@@ -47,11 +47,21 @@ export const PageTitle = styled.h1`
 
 export const StyledStepIndicator = styled.div`
   min-width: 0;
-  overflow-x: auto;
+  overflow: visible;
 
   .krds-step-wrap {
-    min-width: 360px;
+    width: 292px;
+    min-width: 0;
     margin-bottom: 0;
+  }
+
+  .krds-step-wrap > li {
+    min-width: 0;
+  }
+
+  .krds-step-wrap .step-tit,
+  .krds-step-wrap .step {
+    white-space: nowrap;
   }
 `;
 
@@ -71,6 +81,10 @@ export const StepEyebrow = styled.p`
   font-size: 17px;
   font-weight: 700;
   line-height: 1.5;
+`;
+
+export const StepCurrentText = styled.span`
+  color: var(--krds-light-color-text-primary, #256ef4);
 `;
 
 export const StepTitle = styled.h2`
@@ -192,7 +206,8 @@ export const AgreementBand = styled.div`
 
 export const ActionBar = styled.div`
   display: flex;
-  min-height: 64px;
+  min-height: 68px;
+  margin-top: 40px;
   justify-content: space-between;
   gap: 16px;
 
@@ -203,10 +218,33 @@ export const ActionBar = styled.div`
 
 export const ButtonGroup = styled.div`
   display: flex;
-  min-width: 114px;
+  min-width: 120px;
 
   .krds-btn {
-    min-width: 114px;
+    width: 120px;
+    min-width: 120px;
+    height: 68px;
+    min-height: 68px;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  .krds-btn.secondary {
+    border: 1px solid var(--krds-light-color-border-gray-dark, #58616a);
+    color: var(--krds-light-color-text-basic, #1e2124);
+    background: var(--krds-light-color-surface-white, #fff);
+  }
+
+  .krds-btn.secondary:hover {
+    background: var(--krds-light-color-action-secondary-hover, #f4f5f6);
+  }
+
+  .krds-btn.primary {
+    border: 1px solid var(--krds-light-color-button-primary-fill, #256ef4);
+    color: var(--krds-light-color-text-basic-inverse, #fff);
+    background: var(--krds-light-color-button-primary-fill, #256ef4);
   }
 
   @media (max-width: 767px) {

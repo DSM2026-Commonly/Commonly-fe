@@ -21,6 +21,7 @@ import {
   PageHeader,
   PageTitle,
   RegistrationNoticeRoot,
+  StepCurrentText,
   StepEyebrow,
   StepHeader,
   StepTitle,
@@ -101,7 +102,10 @@ function IntegratedRegistrationNotice({
 
       <FormFlow>
         <StepHeader>
-          <StepEyebrow>{stepLabel}</StepEyebrow>
+          <StepEyebrow>
+            <StepCurrentText>{stepLabel.split(" / ")[0]}</StepCurrentText>
+            {stepLabel.includes(" / ") ? ` / ${stepLabel.split(" / ")[1]}` : ""}
+          </StepEyebrow>
           <StepTitle>{stepTitle}</StepTitle>
         </StepHeader>
 
