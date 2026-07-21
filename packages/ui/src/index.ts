@@ -7,3 +7,8 @@ export type {
   RegistrationMethodOption,
   RegistrationMethodSelectorProps,
 } from "./registration-method/RegistrationMethodSelector";
+export { default as IntegratedRegistrationNotice } from "./integrated-registration/IntegratedRegistrationNotice";
+export type {
+  IntegratedRegistrationNoticeProps,
+  IntegratedRegistrationNoticeStep,
+} from "./integrated-registration/IntegratedRegistrationNotice";

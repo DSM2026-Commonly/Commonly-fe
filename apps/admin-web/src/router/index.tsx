@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AdminLayout from "../layout/AdminLayout";
+import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RoutePlaceholderPage from "../pages/RoutePlaceholderPage";
 
@@ -28,10 +29,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/register",
+        Component: IntegratedRegistrationNoticePage,
+      },
+      {
+        path: "career/register/bulk",
+        Component: IntegratedRegistrationNoticePage,
+      },
+      {
+        path: "career/register/bulk/upload",
         element: (
           <RoutePlaceholderPage
-            title="경력사항 등록"
-            description="경력사항 등록 페이지를 준비 중입니다."
+            title="파일 업로드"
+            description="경력사항 통합 등록 파일 업로드 페이지를 준비 중입니다."
           />
         ),
       },
