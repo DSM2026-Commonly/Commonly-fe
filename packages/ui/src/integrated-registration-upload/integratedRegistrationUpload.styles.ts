@@ -4,7 +4,7 @@ export const UploadRoot = styled.section`
   display: flex;
   width: min(792px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 75px 0 49px;
+  padding: 88px 0 49px;
   box-sizing: border-box;
   flex-direction: column;
   gap: 48px;
@@ -21,8 +21,8 @@ export const UploadRoot = styled.section`
 
 export const PageHeader = styled.div`
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 292px;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 24px;
   align-items: start;
 
   @media (max-width: 900px) {
@@ -32,14 +32,15 @@ export const PageHeader = styled.div`
 
 export const PageTitle = styled.h1`
   margin: 0;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 0;
+  line-height: 1.5;
+  letter-spacing: 1px;
 
   @media (max-width: 767px) {
     font-size: 30px;
     line-height: 1.4;
+    letter-spacing: 0;
   }
 `;
 
@@ -48,7 +49,8 @@ export const StyledStepIndicator = styled.div`
   overflow: visible;
 
   .krds-step-wrap {
-    width: 292px;
+    width: 360px;
+    max-width: 100%;
     min-width: 0;
     margin-bottom: 0;
   }

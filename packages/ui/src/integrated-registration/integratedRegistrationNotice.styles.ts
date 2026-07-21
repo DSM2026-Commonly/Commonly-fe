@@ -50,7 +50,8 @@ export const StyledStepIndicator = styled.div`
   overflow: visible;
 
   .krds-step-wrap {
-    width: 292px;
+    width: 360px;
+    max-width: 100%;
     min-width: 0;
     margin-bottom: 0;
   }

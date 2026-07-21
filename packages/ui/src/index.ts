@@ -17,3 +17,10 @@ export type {
   IntegratedRegistrationUploadProps,
   IntegratedRegistrationUploadStep,
 } from "./integrated-registration-upload/IntegratedRegistrationUpload";
+export { default as IntegratedRegistrationConfirm } from "./integrated-registration-confirm/IntegratedRegistrationConfirm";
+export type {
+  IntegratedRegistrationConfirmField,
+  IntegratedRegistrationConfirmMapping,
+  IntegratedRegistrationConfirmProps,
+  IntegratedRegistrationConfirmStep,
+} from "./integrated-registration-confirm/IntegratedRegistrationConfirm";

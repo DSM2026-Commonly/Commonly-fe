@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import UserLayout from "../layout/UserLayout";
+import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
 import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUploadPage";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -52,12 +53,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/register/bulk/confirm",
-        element: (
-          <RoutePlaceholderPage
-            title="데이터 확인"
-            description="업로드한 경력사항 데이터를 확인하는 페이지를 준비 중입니다."
-          />
-        ),
+        Component: IntegratedRegistrationConfirmPage,
       },
       {
         path: "career/edit",
