@@ -1,4 +1,5 @@
 import logo from "../assets/Logo/logo1.png";
+import type { MouseEvent } from "react";
 import {
   adminHeaderMenus,
   type HeaderMenuItem,
@@ -26,6 +27,7 @@ export interface HeaderProps {
   variant?: HeaderVariant;
   onExtend?: () => void;
   onLogout?: () => void;
+  onNavigate?: (href: string) => void;
 }
 
 const headerConfigurations = {
@@ -72,8 +74,28 @@ const Header = ({
   variant = "admin",
   onExtend,
   onLogout,
+  onNavigate,
 }: HeaderProps) => {
   const configuration = headerConfigurations[variant];
+  const handleNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (
+      !onNavigate ||
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    onNavigate(href);
+  };
 
   return (
     <HeaderRoot
@@ -103,6 +125,7 @@ const Header = ({
             href="/"
             aria-label={`유성구 ${configuration.title} 홈`}
             $width={configuration.brandWidth}
+            onClick={(event) => handleNavigation(event, "/")}
           >
             <BrandLogo
               src={logo}
@@ -123,6 +146,9 @@ const Header = ({
                     <PrimaryNavigationLink
                       href={menu.href}
                       $width={menu.width}
+                      onClick={(event) =>
+                        handleNavigation(event, menu.href)
+                      }
                     >
                       {menu.label}
                     </PrimaryNavigationLink>

@@ -1,4 +1,3 @@
-// @ts-expect-error CSS asset provided by krds-react at runtime
 import "krds-react/dist/index.css";
 import logo1 from "../assets/Logo/logo1.png";
 import { StyledFooter } from "./footer.styles";
