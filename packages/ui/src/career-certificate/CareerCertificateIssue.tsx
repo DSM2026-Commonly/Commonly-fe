@@ -129,7 +129,7 @@ function CareerCertificateIssue({
     }
 
     setHasPersonSearchResult(true);
-    setSelectedPerson("");
+    setSelectedPerson("jeon-jaejun");
   };
 
   const resetPersonSearchResult = () => {

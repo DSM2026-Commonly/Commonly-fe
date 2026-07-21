@@ -1,4 +1,4 @@
-import { Button, Checkbox, Radio, RadioGroup, Table, TextInput } from "krds-react";
+import { Checkbox, Radio, RadioGroup, Table, TextInput } from "krds-react";
 import { CAREER_ROWS } from "../CareerCertificateIssue.constants";
 import {
   CardStack,
@@ -111,13 +111,6 @@ function DetailsStep({
                 {CAREER_ROWS.length}건 중{" "}
                 <strong>{selectedCareerIds.length}건</strong> 선택됨
               </SelectionCount>
-              <Button
-                variant="text"
-                size="xsmall"
-                onClick={() => onSelectAll(true)}
-              >
-                전체 선택
-              </Button>
             </SelectionToolbar>
           </SelectionIntro>
           <TableFrame>
