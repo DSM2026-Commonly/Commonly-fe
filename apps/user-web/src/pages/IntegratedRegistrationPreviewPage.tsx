@@ -7,7 +7,7 @@ function IntegratedRegistrationPreviewPage() {
   return (
     <IntegratedRegistrationPreview
       onPrevious={() => void navigate("/career/register/bulk/confirm")}
-      onNext={() => void navigate("/career/register")}
+      onNext={() => void navigate("/career/register/bulk/complete")}
     />
   );
 }

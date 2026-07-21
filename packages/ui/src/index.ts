@@ -30,3 +30,8 @@ export type {
   IntegratedRegistrationPreviewProps,
   IntegratedRegistrationPreviewStep,
 } from "./integrated-registration-preview/IntegratedRegistrationPreview";
+export { default as IntegratedRegistrationComplete } from "./integrated-registration-complete/IntegratedRegistrationComplete";
+export type {
+  IntegratedRegistrationCompleteProps,
+  IntegratedRegistrationCompleteResult,
+} from "./integrated-registration-complete/IntegratedRegistrationComplete";

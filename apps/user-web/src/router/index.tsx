@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import UserLayout from "../layout/UserLayout";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
+import IntegratedRegistrationCompletePage from "../pages/IntegratedRegistrationCompletePage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
 import IntegratedRegistrationPreviewPage from "../pages/IntegratedRegistrationPreviewPage";
 import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUploadPage";
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "career/register/bulk/preview",
         Component: IntegratedRegistrationPreviewPage,
+      },
+      {
+        path: "career/register/bulk/complete",
+        Component: IntegratedRegistrationCompletePage,
       },
       {
         path: "career/edit",
