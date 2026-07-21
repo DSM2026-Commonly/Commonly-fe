@@ -78,6 +78,18 @@ function IntegratedRegistrationPreview({
   onNext,
 }: IntegratedRegistrationPreviewProps) {
   const titleId = useId();
+  const canProceed =
+    fields.length > 0 &&
+    fields.every((field) => field.value.trim().length > 0) &&
+    Boolean(onNext);
+
+  const handleNext = () => {
+    if (!canProceed) {
+      return;
+    }
+
+    onNext?.();
+  };
 
   return (
     <ConfirmRoot aria-labelledby={titleId}>
@@ -141,7 +153,8 @@ function IntegratedRegistrationPreview({
               variant="primary"
               size="xlarge"
               type="button"
-              onClick={onNext}
+              disabled={!canProceed}
+              onClick={handleNext}
             >
               {nextLabel}
             </Button>

@@ -227,6 +227,14 @@ export const ButtonGroup = styled.div`
     background: var(--krds-light-color-button-primary-fill, #256ef4);
   }
 
+  .krds-btn.primary:disabled,
+  .krds-btn.primary[disabled] {
+    border-color: var(--krds-light-color-border-disabled, #cdd1d5);
+    color: var(--krds-light-color-text-disabled, #8a949e);
+    background: var(--krds-light-color-surface-disabled, #e6e8ea);
+    cursor: not-allowed;
+  }
+
   @media (max-width: 767px) {
     width: 100%;
 

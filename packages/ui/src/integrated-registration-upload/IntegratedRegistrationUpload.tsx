@@ -79,8 +79,9 @@ function IntegratedRegistrationUpload({
   const canProceed = useMemo(
     () =>
       files.length > 0 &&
-      files.every((file) => file.status === "ready" || file.status === "completed"),
-    [files],
+      files.every((file) => file.status === "ready" || file.status === "completed") &&
+      Boolean(onNext),
+    [files, onNext],
   );
 
   const formatFileSize = (size: number) => {

@@ -113,7 +113,10 @@ function IntegratedRegistrationConfirm({
     [rowOptions],
   );
 
-  const canProceed = fields.every((field) => Boolean(selectedRows[field.id]));
+  const canProceed =
+    fields.length > 0 &&
+    fields.every((field) => Boolean(selectedRows[field.id])) &&
+    Boolean(onNext);
 
   const handleSelect = (fieldId: string, value: string) => {
     setSelectedRows((currentRows) => ({

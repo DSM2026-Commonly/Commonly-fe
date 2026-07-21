@@ -82,6 +82,15 @@ function IntegratedRegistrationNotice({
   const titleId = useId();
   const agreementId = useId();
   const [isAgreed, setIsAgreed] = useState(false);
+  const canProceed = isAgreed && Boolean(onNext);
+
+  const handleNext = () => {
+    if (!canProceed) {
+      return;
+    }
+
+    onNext?.();
+  };
 
   return (
     <RegistrationNoticeRoot aria-labelledby={titleId}>
@@ -156,8 +165,8 @@ function IntegratedRegistrationNotice({
               variant="primary"
               size="xlarge"
               type="button"
-              disabled={!isAgreed}
-              onClick={onNext}
+              disabled={!canProceed}
+              onClick={handleNext}
             >
               {nextLabel}
             </Button>
