@@ -10,7 +10,7 @@ export interface FooterProps {
 
 function Footer({
   districtOfficeHref = "https://www.yuseong.go.kr/",
-  directionsHref = "https://www.yuseong.go.kr/kor/sub01_01_04.do",
+  directionsHref = "https://www.yuseong.go.kr/kor/sub06_02_04.do",
 }: FooterProps) {
   return (
     <StyledFooter
