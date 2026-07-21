@@ -1,0 +1,263 @@
+import { useState } from "react";
+import certificatePreview from "../assets/career-certificate-preview.png";
+import {
+  CAREER_ROWS,
+  getStepIndex,
+  STEP_VIEWS,
+} from "./CareerCertificateIssue.constants";
+import { FlowRoot } from "./CareerCertificateIssue.styles";
+import type {
+  CareerCertificateIssueProps,
+  CareerCertificateIssueView,
+  CertificateIssueType,
+} from "./CareerCertificateIssue.types";
+import ApplicantStep from "./steps/ApplicantStep";
+import DetailsStep from "./steps/DetailsStep";
+import NoticeStep from "./steps/NoticeStep";
+import ReasonStep from "./steps/ReasonStep";
+import useCareerCertificateScroll from "./useCareerCertificateScroll";
+import CertificatePreviewView from "./views/CertificatePreviewView";
+import CertificateSuccessView from "./views/CertificateSuccessView";
+import CertificateWorkflowView from "./views/CertificateWorkflowView";
+
+export type {
+  CareerCertificateApplicationData,
+  CareerCertificateIssueProps,
+  CareerCertificateIssueView,
+  CertificateIssueType,
+} from "./CareerCertificateIssue.types";
+
+const getNumericDatePart = (value: string) =>
+  value.replace(/[^0-9]/g, "").slice(0, 2);
+
+function CareerCertificateIssue({
+  initialView = "notice",
+  onCancel,
+  onComplete,
+  onDownload,
+}: CareerCertificateIssueProps) {
+  const [view, setView] = useState<CareerCertificateIssueView>(initialView);
+  const [noticeAccepted, setNoticeAccepted] = useState(false);
+  const [reason, setReason] = useState("visit");
+  const [note, setNote] = useState("");
+  const [applicantName, setApplicantName] = useState("");
+  const [birthYear, setBirthYear] = useState("");
+  const [birthMonth, setBirthMonth] = useState("");
+  const [birthDay, setBirthDay] = useState("");
+  const [hasPersonSearchResult, setHasPersonSearchResult] = useState(false);
+  const [selectedPerson, setSelectedPerson] = useState("");
+  const [issueType, setIssueType] = useState<CertificateIssueType>("all");
+  const [selectedCareerIds, setSelectedCareerIds] = useState<string[]>(
+    CAREER_ROWS.map((row) => row.id),
+  );
+  const [additionalNote, setAdditionalNote] = useState("");
+  const [purpose, setPurpose] = useState("");
+
+  const currentStep = getStepIndex(view);
+  const canSearchPerson = Boolean(
+    applicantName.trim() && birthYear && birthMonth && birthDay,
+  );
+  const canContinue =
+    (currentStep !== 0 || noticeAccepted) &&
+    (currentStep !== 2 || Boolean(selectedPerson)) &&
+    (currentStep !== 3 ||
+      issueType === "all" ||
+      selectedCareerIds.length > 0);
+
+  useCareerCertificateScroll(view);
+
+  const moveToView = (nextView: CareerCertificateIssueView) => {
+    setView(nextView);
+  };
+
+  const handlePrevious = () => {
+    if (currentStep === 0) {
+      onCancel?.();
+      return;
+    }
+
+    moveToView(STEP_VIEWS[currentStep - 1]);
+  };
+
+  const handleNext = () => {
+    if (!canContinue) {
+      return;
+    }
+
+    if (currentStep < STEP_VIEWS.length - 1) {
+      moveToView(STEP_VIEWS[currentStep + 1]);
+      return;
+    }
+
+    moveToView("preview");
+  };
+
+  const handlePreviewNext = () => {
+    onComplete?.({
+      issueType,
+      reason,
+      note,
+      applicantName,
+      birthYear,
+      birthMonth,
+      birthDay,
+      selectedCareerIds,
+      additionalNote,
+      purpose,
+    });
+    moveToView("success");
+  };
+
+  const handleCareerSelection = (id: string, checked: boolean) => {
+    setSelectedCareerIds((currentIds) => {
+      if (checked) {
+        return currentIds.includes(id) ? currentIds : [...currentIds, id];
+      }
+
+      return currentIds.filter((currentId) => currentId !== id);
+    });
+  };
+
+  const handleSelectAll = (checked: boolean) => {
+    setSelectedCareerIds(checked ? CAREER_ROWS.map((row) => row.id) : []);
+  };
+
+  const handlePersonSearch = () => {
+    if (!canSearchPerson) {
+      return;
+    }
+
+    setHasPersonSearchResult(true);
+    setSelectedPerson("");
+  };
+
+  const resetPersonSearchResult = () => {
+    setHasPersonSearchResult(false);
+    setSelectedPerson("");
+  };
+
+  const handleApplicantNameChange = (value: string) => {
+    setApplicantName(value);
+    resetPersonSearchResult();
+  };
+
+  const handleBirthYearChange = (value: string) => {
+    setBirthYear(value);
+    resetPersonSearchResult();
+  };
+
+  const handleBirthMonthChange = (value: string) => {
+    setBirthMonth(getNumericDatePart(value));
+    resetPersonSearchResult();
+  };
+
+  const handleBirthDayChange = (value: string) => {
+    setBirthDay(getNumericDatePart(value));
+    resetPersonSearchResult();
+  };
+
+  const handleDownload = () => {
+    if (onDownload) {
+      onDownload();
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.href = certificatePreview;
+    link.download = "유성구청_홍길동_경력증명서_A2026-001.png";
+    link.click();
+  };
+
+  const renderCurrentStep = () => {
+    switch (view) {
+      case "notice":
+        return (
+          <NoticeStep
+            accepted={noticeAccepted}
+            onAcceptedChange={setNoticeAccepted}
+          />
+        );
+      case "reason":
+        return (
+          <ReasonStep
+            reason={reason}
+            note={note}
+            onReasonChange={setReason}
+            onNoteChange={setNote}
+          />
+        );
+      case "applicant":
+        return (
+          <ApplicantStep
+            applicantName={applicantName}
+            birthYear={birthYear}
+            birthMonth={birthMonth}
+            birthDay={birthDay}
+            canSearch={canSearchPerson}
+            hasSearchResult={hasPersonSearchResult}
+            selectedPerson={selectedPerson}
+            onApplicantNameChange={handleApplicantNameChange}
+            onBirthYearChange={handleBirthYearChange}
+            onBirthMonthChange={handleBirthMonthChange}
+            onBirthDayChange={handleBirthDayChange}
+            onSearch={handlePersonSearch}
+            onSelectedPersonChange={setSelectedPerson}
+          />
+        );
+      case "details":
+        return (
+          <DetailsStep
+            issueType={issueType}
+            selectedCareerIds={selectedCareerIds}
+            additionalNote={additionalNote}
+            purpose={purpose}
+            onIssueTypeChange={setIssueType}
+            onCareerSelection={handleCareerSelection}
+            onSelectAll={handleSelectAll}
+            onAdditionalNoteChange={setAdditionalNote}
+            onPurposeChange={setPurpose}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  if (view === "preview") {
+    return (
+      <FlowRoot key={view}>
+        <CertificatePreviewView
+          onPrevious={() => moveToView("details")}
+          onNext={handlePreviewNext}
+        />
+      </FlowRoot>
+    );
+  }
+
+  if (view === "success") {
+    return (
+      <FlowRoot key={view}>
+        <CertificateSuccessView
+          issueType={issueType}
+          onRestart={() => moveToView("notice")}
+          onDownload={handleDownload}
+        />
+      </FlowRoot>
+    );
+  }
+
+  return (
+    <FlowRoot key={view}>
+      <CertificateWorkflowView
+        currentStep={currentStep}
+        canContinue={canContinue}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+      >
+        {renderCurrentStep()}
+      </CertificateWorkflowView>
+    </FlowRoot>
+  );
+}
+
+export default CareerCertificateIssue;
