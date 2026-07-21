@@ -49,13 +49,19 @@ export const CAREER_ROWS = [
   },
 ];
 
+export const LATEST_BIRTH_YEAR = 2026;
+export const EARLIEST_BIRTH_YEAR = 1900;
+
 export const YEAR_OPTIONS = [
   { value: "", label: "년도" },
-  ...Array.from({ length: 77 }, (_, index) => {
-    const year = String(2026 - index);
+  ...Array.from(
+    { length: LATEST_BIRTH_YEAR - EARLIEST_BIRTH_YEAR + 1 },
+    (_, index) => {
+      const year = String(LATEST_BIRTH_YEAR - index);
 
-    return { value: year, label: year };
-  }),
+      return { value: year, label: year };
+    },
+  ),
 ];
 
 export const getStepIndex = (view: CareerCertificateIssueView) => {

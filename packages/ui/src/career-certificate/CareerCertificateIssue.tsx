@@ -11,6 +11,10 @@ import type {
   CareerCertificateIssueView,
   CertificateIssueType,
 } from "./CareerCertificateIssue.types";
+import {
+  isValidBirthDate,
+  sanitizeDatePart,
+} from "./CareerCertificateIssue.validation";
 import ApplicantStep from "./steps/ApplicantStep";
 import DetailsStep from "./steps/DetailsStep";
 import NoticeStep from "./steps/NoticeStep";
@@ -26,9 +30,6 @@ export type {
   CareerCertificateIssueView,
   CertificateIssueType,
 } from "./CareerCertificateIssue.types";
-
-const getNumericDatePart = (value: string) =>
-  value.replace(/[^0-9]/g, "").slice(0, 2);
 
 function CareerCertificateIssue({
   initialView = "notice",
@@ -54,9 +55,9 @@ function CareerCertificateIssue({
   const [purpose, setPurpose] = useState("");
 
   const currentStep = getStepIndex(view);
-  const canSearchPerson = Boolean(
-    applicantName.trim() && birthYear && birthMonth && birthDay,
-  );
+  const canSearchPerson =
+    applicantName.trim().length > 0 &&
+    isValidBirthDate(birthYear, birthMonth, birthDay);
   const canContinue =
     (currentStep !== 0 || noticeAccepted) &&
     (currentStep !== 2 || Boolean(selectedPerson)) &&
@@ -147,13 +148,18 @@ function CareerCertificateIssue({
   };
 
   const handleBirthMonthChange = (value: string) => {
-    setBirthMonth(getNumericDatePart(value));
+    setBirthMonth(sanitizeDatePart(value));
     resetPersonSearchResult();
   };
 
   const handleBirthDayChange = (value: string) => {
-    setBirthDay(getNumericDatePart(value));
+    setBirthDay(sanitizeDatePart(value));
     resetPersonSearchResult();
+  };
+
+  const handleRestart = () => {
+    setNoticeAccepted(false);
+    moveToView("notice");
   };
 
   const handleDownload = () => {
@@ -239,7 +245,7 @@ function CareerCertificateIssue({
       <FlowRoot key={view}>
         <CertificateSuccessView
           issueType={issueType}
-          onRestart={() => moveToView("notice")}
+          onRestart={handleRestart}
           onDownload={handleDownload}
         />
       </FlowRoot>

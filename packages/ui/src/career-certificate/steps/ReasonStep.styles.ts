@@ -17,7 +17,8 @@ export const TextareaFrame = styled.div`
   }
 
   textarea.krds-input {
+    height: 132px;
     min-height: 132px;
-    resize: vertical;
+    resize: none;
   }
 `;
