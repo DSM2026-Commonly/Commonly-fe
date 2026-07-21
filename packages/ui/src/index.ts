@@ -12,3 +12,8 @@ export type {
   IntegratedRegistrationNoticeProps,
   IntegratedRegistrationNoticeStep,
 } from "./integrated-registration/IntegratedRegistrationNotice";
+export { default as IntegratedRegistrationUpload } from "./integrated-registration-upload/IntegratedRegistrationUpload";
+export type {
+  IntegratedRegistrationUploadProps,
+  IntegratedRegistrationUploadStep,
+} from "./integrated-registration-upload/IntegratedRegistrationUpload";
