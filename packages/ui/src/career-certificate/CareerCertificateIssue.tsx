@@ -13,6 +13,7 @@ import type {
 } from "./CareerCertificateIssue.types";
 import {
   isValidBirthDate,
+  sanitizeApplicantName,
   sanitizeDatePart,
 } from "./CareerCertificateIssue.validation";
 import ApplicantStep from "./steps/ApplicantStep";
@@ -138,7 +139,13 @@ function CareerCertificateIssue({
   };
 
   const handleApplicantNameChange = (value: string) => {
-    setApplicantName(value);
+    const sanitizedValue = sanitizeApplicantName(value);
+
+    if (sanitizedValue === applicantName) {
+      return;
+    }
+
+    setApplicantName(sanitizedValue);
     resetPersonSearchResult();
   };
 

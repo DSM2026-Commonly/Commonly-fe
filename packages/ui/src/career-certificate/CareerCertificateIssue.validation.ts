@@ -5,6 +5,9 @@ import {
 
 const DATE_PART_PATTERN = /^\d{1,2}$/;
 
+export const sanitizeApplicantName = (value: string) =>
+  value.replace(/[0-9]/g, "");
+
 export const sanitizeDatePart = (value: string) =>
   value.replace(/[^0-9]/g, "").slice(0, 2);
 
