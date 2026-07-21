@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import UserLayout from "../layout/UserLayout";
 import NotFoundPage from "../pages/NotFoundPage";
+import RegistrationMethodPage from "../pages/RegistrationMethodPage";
 import RoutePlaceholderPage from "../pages/RoutePlaceholderPage";
 
 export const router = createBrowserRouter([
@@ -28,10 +29,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/register",
+        Component: RegistrationMethodPage,
+      },
+      {
+        path: "career/register/individual",
         element: (
           <RoutePlaceholderPage
-            title="경력사항 등록"
-            description="경력사항 등록 페이지를 준비 중입니다."
+            title="경력사항 개별 등록"
+            description="경력사항을 직접 입력하여 등록해 주세요."
+          />
+        ),
+      },
+      {
+        path: "career/register/bulk",
+        element: (
+          <RoutePlaceholderPage
+            title="경력사항 통합 등록"
+            description="엑셀 파일로 경력사항을 등록해 주세요."
           />
         ),
       },
