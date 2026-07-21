@@ -113,16 +113,43 @@ function IntegratedRegistrationConfirm({
     [rowOptions],
   );
 
+  const selectedRowValues = useMemo(
+    () => new Set(Object.values(selectedRows).filter(Boolean)),
+    [selectedRows],
+  );
+
   const canProceed =
     fields.length > 0 &&
     fields.every((field) => Boolean(selectedRows[field.id])) &&
     Boolean(onNext);
 
+  const getAvailableOptions = (fieldId: string) => {
+    const currentValue = selectedRows[fieldId] ?? "";
+
+    return selectOptions.filter(
+      (option) =>
+        !option.value ||
+        option.value === currentValue ||
+        !selectedRowValues.has(option.value),
+    );
+  };
+
   const handleSelect = (fieldId: string, value: string) => {
-    setSelectedRows((currentRows) => ({
-      ...currentRows,
-      [fieldId]: value,
-    }));
+    setSelectedRows((currentRows) => {
+      const isSelectedByOtherField = Object.entries(currentRows).some(
+        ([selectedFieldId, selectedValue]) =>
+          selectedFieldId !== fieldId && selectedValue === value,
+      );
+
+      if (value && isSelectedByOtherField) {
+        return currentRows;
+      }
+
+      return {
+        ...currentRows,
+        [fieldId]: value,
+      };
+    });
   };
 
   const handleNext = () => {
@@ -176,7 +203,7 @@ function IntegratedRegistrationConfirm({
                     <Select
                       id={`${titleId}-${field.id}`}
                       size="large"
-                      options={selectOptions}
+                      options={getAvailableOptions(field.id)}
                       value={selectedRows[field.id] ?? ""}
                       onChange={(value) => handleSelect(field.id, value)}
                       aria-label={`${field.label.replace("\n", " ")} 행 선택`}
