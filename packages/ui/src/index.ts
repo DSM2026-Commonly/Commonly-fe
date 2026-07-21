@@ -24,3 +24,9 @@ export type {
   IntegratedRegistrationConfirmProps,
   IntegratedRegistrationConfirmStep,
 } from "./integrated-registration-confirm/IntegratedRegistrationConfirm";
+export { default as IntegratedRegistrationPreview } from "./integrated-registration-preview/IntegratedRegistrationPreview";
+export type {
+  IntegratedRegistrationPreviewField,
+  IntegratedRegistrationPreviewProps,
+  IntegratedRegistrationPreviewStep,
+} from "./integrated-registration-preview/IntegratedRegistrationPreview";

@@ -113,6 +113,8 @@ function IntegratedRegistrationConfirm({
     [rowOptions],
   );
 
+  const canProceed = fields.every((field) => Boolean(selectedRows[field.id]));
+
   const handleSelect = (fieldId: string, value: string) => {
     setSelectedRows((currentRows) => ({
       ...currentRows,
@@ -121,6 +123,10 @@ function IntegratedRegistrationConfirm({
   };
 
   const handleNext = () => {
+    if (!canProceed) {
+      return;
+    }
+
     onNext?.(
       fields.map((field) => ({
         fieldId: field.id,
@@ -195,6 +201,7 @@ function IntegratedRegistrationConfirm({
               variant="primary"
               size="xlarge"
               type="button"
+              disabled={!canProceed}
               onClick={handleNext}
             >
               {nextLabel}

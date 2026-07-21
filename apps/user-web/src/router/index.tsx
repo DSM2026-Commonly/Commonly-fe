@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import UserLayout from "../layout/UserLayout";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
+import IntegratedRegistrationPreviewPage from "../pages/IntegratedRegistrationPreviewPage";
 import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUploadPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RegistrationMethodPage from "../pages/RegistrationMethodPage";
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "career/register/bulk/confirm",
         Component: IntegratedRegistrationConfirmPage,
+      },
+      {
+        path: "career/register/bulk/preview",
+        Component: IntegratedRegistrationPreviewPage,
       },
       {
         path: "career/edit",
