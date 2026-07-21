@@ -1,7 +1,8 @@
-import Footer from "@commonly/ui";
+import { RouterProvider } from "react-router/dom";
+import { router } from "./router";
 
 function App() {
-  return <Footer />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
