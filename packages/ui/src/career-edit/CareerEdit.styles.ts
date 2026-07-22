@@ -22,8 +22,6 @@ export const CareerEditRoot = styled.section`
   --career-color-surface-primary: var(--career-edit-surface-primary);
 
   width: 100%;
-  min-height: calc(100vh - 105px);
-  min-height: calc(100svh - 105px);
   animation: career-edit-view-enter 280ms
     cubic-bezier(0.22, 1, 0.36, 1);
   color: var(--career-edit-text);
@@ -49,11 +47,6 @@ export const CareerEditRoot = styled.section`
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}) {
-    min-height: calc(100vh - 114px);
-    min-height: calc(100svh - 114px);
   }
 
   .sr-only {
