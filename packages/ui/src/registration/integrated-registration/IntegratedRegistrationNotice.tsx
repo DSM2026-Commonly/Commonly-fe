@@ -6,8 +6,8 @@ import {
   Checkbox,
   StepIndicator,
 } from "krds-react";
-import bookIcon from "../assets/[U-regi-02] 통합 등록 페이지 - 1/icon/book.svg";
-import guideCheckIcon from "../assets/guide_check.svg";
+import bookIcon from "../../assets/[U-regi-02] 통합 등록 페이지 - 1/icon/book.svg";
+import guideCheckIcon from "../../assets/guide_check.svg";
 import {
   ActionBar,
   ButtonGroup,

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import IndividualRegistrationComplete from "../src/individual-registration-complete/IndividualRegistrationComplete";
+import IndividualRegistrationComplete from "../src/registration/individual-registration-complete/IndividualRegistrationComplete";
 
 describe("IndividualRegistrationComplete", () => {
   test("renders the approved default completion content", () => {

@@ -8,13 +8,13 @@ import {
   Textarea,
   TextInput,
 } from "krds-react";
-import { YEAR_OPTIONS } from "../career-certificate/CareerCertificateIssue.constants";
+import { YEAR_OPTIONS } from "../../career-certificate/CareerCertificateIssue.constants";
 import {
   getDaysInBirthMonth,
   isValidBirthDate,
   isValidBirthDay,
   isValidBirthMonth,
-} from "../career-certificate/CareerCertificateIssue.validation";
+} from "../../career-certificate/CareerCertificateIssue.validation";
 import {
   ActionBar,
   ButtonGroup,

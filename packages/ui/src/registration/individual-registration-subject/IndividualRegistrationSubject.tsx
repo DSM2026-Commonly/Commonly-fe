@@ -36,7 +36,7 @@ import {
   StepTitle,
   StyledStepIndicator,
 } from "./individualRegistrationSubject.styles";
-import { YEAR_OPTIONS } from "../career-certificate/CareerCertificateIssue.constants";
+import { YEAR_OPTIONS } from "../../career-certificate/CareerCertificateIssue.constants";
 import {
   getDaysInBirthMonth,
   isValidBirthDate,
@@ -44,7 +44,7 @@ import {
   isValidBirthMonth,
   sanitizeApplicantName,
   sanitizeDatePart,
-} from "../career-certificate/CareerCertificateIssue.validation";
+} from "../../career-certificate/CareerCertificateIssue.validation";
 import { findDuplicateCandidates } from "./IndividualRegistrationSubject.utils";
 
 export interface IndividualRegistrationSubjectStep {
