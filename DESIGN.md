@@ -3,8 +3,8 @@
 ## Source of truth
 - Status: Active
 - Last refreshed: 2026-07-22
-- Primary product surfaces: 사용자용 경력증명서 발급, 경력사항 개별·통합 등록, 공통 헤더·푸터
-- Evidence reviewed: Figma `Commonly` nodes `107:15370`, `107:13996`; `apps/user-web/src/router/index.tsx`; `packages/ui/src/integrated-registration*`; `packages/ui/src/individual-registration*`; `packages/ui/src/header`; `packages/ui/src/layout`
+- Primary product surfaces: 사용자용 경력증명서 발급, 경력사항 개별·통합 등록, 관리자용 업무 이력 조회, 공통 헤더·푸터
+- Evidence reviewed: Figma `Commonly` nodes `107:15370`, `107:13996`, `107:16348`; `apps/user-web/src/router/index.tsx`; `apps/admin-web/src/router/index.tsx`; `packages/ui/src/integrated-registration*`; `packages/ui/src/individual-registration*`; `packages/ui/src/header`; `packages/ui/src/layout`
 
 ## Brand
 - Personality: 신뢰할 수 있고 명료한 공공 업무 서비스
@@ -23,13 +23,13 @@
 
 ## Information architecture
 - Primary navigation: 경력증명서 발급, 경력사항 등록, 경력사항 수정, 사용자 관리, 업무 이력 조회
-- Core routes/screens: `/career/register`, `/career/register/individual/*`, `/career/register/bulk/*`
+- Core routes/screens: `/career/register`, `/career/register/individual/*`, `/career/register/bulk/*`, `/history`
 - Content hierarchy: 페이지 제목과 단계 표시 → 현재 단계 제목 → 입력/안내 카드 → 이전·다음 행동
 
 ## Design principles
 - Principle 1: 저장소의 KRDS 컴포넌트와 토큰을 우선 사용한다.
 - Principle 2: 단계별로 필요한 정보만 노출하고 완료 조건을 명시적으로 제어한다.
-- Tradeoffs: Figma의 792px 데스크톱 본문 폭을 유지하되 작은 화면에서는 단일 열로 전환한다.
+- Tradeoffs: 등록 흐름은 Figma의 792px 본문 폭, 업무 이력 표는 980px 폭을 유지하되 작은 화면에서는 표를 가로 스크롤로 제공한다.
 
 ## Visual language
 - Color: KRDS light 토큰의 기본 텍스트, primary blue, gray border/surface 사용
@@ -41,9 +41,9 @@
 
 ## Components
 - Existing components to reuse: KRDS Button, TextInput, Select, Radio/RadioGroup, Checkbox, StepIndicator, FileUpload
-- New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계, `IndividualRegistrationComplete` 개별 등록 완료 결과
-- Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 반응형 단일 열
-- Token/component ownership: 공통 UI는 `packages/ui`, 라우트 연결은 `apps/user-web`
+- New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계, `IndividualRegistrationComplete` 개별 등록 완료 결과, `WorkHistory` 업무 이력 표·페이지 이동
+- Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 페이지 선택·바로 이동, 반응형 단일 열/표 가로 스크롤
+- Token/component ownership: 공통 UI는 `packages/ui`, 라우트 연결은 `apps/user-web`와 `apps/admin-web`
 
 ## Accessibility
 - Target standard: KRDS 기본 접근성 및 WCAG 2.1 AA 수준 지향
@@ -75,7 +75,7 @@
 - Design-token constraints: 원시 색상보다 `--krds-*` 토큰을 우선하고 fallback만 병기
 - Performance constraints: 신규 UI 의존성을 추가하지 않는다.
 - Compatibility constraints: 현재 Vite 및 workspace 패키지 경계를 유지한다.
-- Test/screenshot expectations: 컴포넌트 SSR 테스트, user-web build/lint, Figma 1920px 기준 시각 비교
+- Test/screenshot expectations: 컴포넌트 SSR 테스트, 해당 앱 build/lint, Figma 1920px 기준 시각 비교
 
 ## Open questions
 - [ ] 실제 주소 검색 서비스 연동 방식 / 백엔드 담당 / 검색 결과 확정 동작에 영향
