@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import UserLayout from "../layout/UserLayout";
 import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
 import HomePage from "../pages/HomePage";
+import IndividualRegistrationNoticePage from "../pages/IndividualRegistrationNoticePage";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
 import IntegratedRegistrationCompletePage from "../pages/IntegratedRegistrationCompletePage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
@@ -30,10 +31,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/register/individual",
+        Component: IndividualRegistrationNoticePage,
+      },
+      {
+        path: "career/register/individual/subject",
         element: (
           <RoutePlaceholderPage
-            title="경력사항 개별 등록"
-            description="경력사항을 직접 입력하여 등록해 주세요."
+            title="대상자 입력"
+            description="개별 등록 대상자의 정보를 입력하는 페이지를 준비 중입니다."
           />
         ),
       },

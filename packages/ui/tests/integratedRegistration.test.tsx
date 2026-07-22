@@ -17,6 +17,29 @@ describe("integrated registration flow", () => {
     expect(markup).toMatch(/<button[^>]*disabled[^>]*>다음으로<\/button>/);
   });
 
+  test("keeps the individual notice unchecked until the user agrees", () => {
+    const markup = renderToStaticMarkup(
+      <IntegratedRegistrationNotice
+        variant="individual"
+        title="경력사항 개별 등록"
+        steps={[
+          { id: "notice", title: "유의사항 확인" },
+          { id: "subject", title: "대상자 입력" },
+          { id: "career", title: "경력사항 입력" },
+        ]}
+        onNext={() => undefined}
+      />,
+    );
+
+    const nextButton = markup.match(/<button[^>]*>다음으로<\/button>/)?.[0];
+
+    expect(markup).toContain("경력사항 개별 등록");
+    expect(markup).toContain("대상자 입력");
+    expect(markup).not.toContain('checked=""');
+    expect(nextButton).toBeDefined();
+    expect(nextButton).toContain("disabled");
+  });
+
   test("keeps the upload constraints and blocks navigation without a file", () => {
     const markup = renderToStaticMarkup(
       <IntegratedRegistrationUpload onNext={() => undefined} />,
