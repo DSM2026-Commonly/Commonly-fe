@@ -26,6 +26,11 @@ export type {
 } from "./career-edit/CareerEdit";
 export { default as UserHome } from "./home/UserHome";
 export type { UserHomeProps } from "./home/UserHome";
+export { default as WorkHistory } from "./work-history/WorkHistory";
+export type {
+  WorkHistoryProps,
+  WorkHistoryRecord,
+} from "./work-history/WorkHistory";
 export { default as RegistrationMethodSelector } from "./registration-method/RegistrationMethodSelector";
 export type {
   RegistrationMethodOption,
