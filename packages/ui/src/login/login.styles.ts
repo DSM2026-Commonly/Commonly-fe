@@ -3,12 +3,9 @@ import { Button, TextList } from "krds-react";
 
 export const LoginContent = styled.section`
   display: flex;
-  width: min(
-    clamp(320px, 52vw, 720px),
-    calc(100% - clamp(32px, 5vw, 80px))
-  );
+  width: min(792px, calc(100% - clamp(32px, 5vw, 80px)));
   margin: 0 auto;
-  padding: clamp(36px, 4.2vw, 64px) 0 clamp(48px, 5vw, 80px);
+  padding: clamp(36px, 4.2vw, 64px) 0;
   box-sizing: border-box;
   flex-direction: column;
   color: var(--krds-light-color-text-basic, #1e2124);
@@ -17,39 +14,55 @@ export const LoginContent = styled.section`
 `;
 
 export const LoginHeadingArea = styled.header`
-  padding-bottom: clamp(20px, 2vw, 28px);
-  border-bottom: 1px solid
-    var(--krds-light-color-divider-gray, #8a949e);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const LoginEyebrow = styled.p`
-  margin: 0 0 8px;
+  margin: 0;
   color: var(--krds-light-color-text-subtle, #464c53);
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.5;
 `;
 
 export const LoginHeading = styled.h1`
   margin: 0;
   color: var(--krds-light-color-text-bolder, #131416);
-  font-size: clamp(30px, 2.3vw, 36px);
+  font-size: clamp(30px, 2.6vw, 40px);
   font-weight: 700;
   line-height: 1.5;
-  letter-spacing: 0;
+  letter-spacing: 1px;
+`;
+
+export const LoginPanel = styled.div`
+  width: 100%;
+  margin-top: 48px;
+  padding: 31px 32px 32px;
+  box-sizing: border-box;
+  border-top: 1px solid
+    var(--krds-light-color-divider-gray, #8a949e);
+  border-bottom: 1px solid
+    var(--krds-light-color-divider-gray, #8a949e);
+
+  @media (max-width: 767px) {
+    margin-top: 32px;
+    padding: 24px 0;
+  }
 `;
 
 export const LoginForm = styled.form`
   display: flex;
-  width: min(100%, clamp(300px, 32vw, 460px));
-  margin: clamp(20px, 2vw, 28px) auto 0;
+  width: min(100%, 480px);
+  margin: 0 auto;
   flex-direction: column;
 `;
 
 export const FieldGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.2vw, 16px);
+  gap: 24px;
 
   .form-group,
   .form-conts {
@@ -58,15 +71,15 @@ export const FieldGroup = styled.div`
 
   .krds-input {
     width: 100%;
-    height: clamp(46px, 3.6vw, 52px);
-    min-height: clamp(46px, 3.6vw, 52px);
-    padding: 0 14px;
+    height: 56px;
+    min-height: 56px;
+    padding: 0 16px;
     box-sizing: border-box;
     border: 1px solid var(--krds-light-color-border-gray-dark, #58616a);
     border-radius: 8px;
     color: var(--krds-light-color-text-basic, #1e2124);
     background: var(--krds-light-color-surface-white, #ffffff);
-    font-size: 16px;
+    font-size: 19px;
     line-height: 1.5;
   }
 
@@ -80,6 +93,20 @@ export const FieldGroup = styled.div`
     outline: 2px solid var(--krds-light-color-border-primary, #256ef4);
     outline-offset: 2px;
   }
+`;
+
+export const LoginField = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const LoginFieldLabel = styled.label`
+  color: var(--krds-light-color-text-subtle, #464c53);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
 `;
 
 export const RememberRow = styled.div`
@@ -104,9 +131,9 @@ export const LoginSubmitButton = styled(Button)`
   &.krds-btn {
     width: 100%;
     min-width: 0;
-    height: clamp(46px, 3.6vw, 52px);
-    min-height: clamp(46px, 3.6vw, 52px);
-    margin-top: clamp(16px, 1.6vw, 22px);
+    height: 56px;
+    min-height: 56px;
+    margin-top: 24px;
     padding: 0 20px;
     border-radius: 8px;
     font-size: 17px;
@@ -118,10 +145,10 @@ export const LoginSubmitButton = styled(Button)`
 export const AccountHelpLinks = styled.nav`
   display: flex;
   min-height: 24px;
-  margin-top: clamp(14px, 1.4vw, 20px);
+  margin-top: 24px;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 8px;
 `;
 
 export const AccountHelpLink = styled.a`
@@ -161,11 +188,13 @@ export const SectionDivider = styled.div`
 
 export const HelpCard = styled.aside`
   width: 100%;
-  padding: clamp(18px, 2vw, 24px) clamp(20px, 2.4vw, 28px);
+  min-height: 164px;
+  margin-top: 40px;
+  padding: 16px 24px;
   box-sizing: border-box;
   border: 1px solid
     var(--krds-light-color-border-secondary-light, #d6e0eb);
-  border-radius: 8px;
+  border-radius: 12px;
   scroll-margin-top: 24px;
   background: var(--krds-light-color-surface-secondary-subtler, #eef2f7);
 
@@ -199,8 +228,8 @@ export const HelpIcon = styled.span`
 
 export const HelpList = styled(TextList)`
   margin: 12px 0 0;
-  --krds-info-list--gap-layout-depth1-li-li: 6px;
+  --krds-info-list--gap-layout-depth1-li-li: 8px;
   color: var(--krds-light-color-text-subtle, #464c53);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.5;
 `;

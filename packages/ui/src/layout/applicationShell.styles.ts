@@ -7,8 +7,6 @@ export const ApplicationShellRoot = styled.div`
 export const ApplicationViewport = styled.div`
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
   flex-direction: column;
 `;
 

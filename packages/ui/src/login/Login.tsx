@@ -16,11 +16,13 @@ import {
   HelpTitle,
   LoginContent,
   LoginEyebrow,
+  LoginField,
+  LoginFieldLabel,
   LoginForm,
   LoginHeading,
   LoginHeadingArea,
+  LoginPanel,
   LoginSubmitButton,
-  SectionDivider,
 } from "./login.styles";
 
 export interface LoginFormData {
@@ -93,83 +95,95 @@ function Login({ initialLoginId = "", onSubmit }: LoginProps) {
     <ApplicationShell headerVariant="not-auth">
       <LoginContent aria-labelledby={titleId}>
         <LoginHeadingArea>
-          <LoginEyebrow>유성구 경력관리 시스템</LoginEyebrow>
+          <LoginEyebrow>유성구 경력관리 시스템 사용자</LoginEyebrow>
           <LoginHeading id={titleId}>로그인</LoginHeading>
         </LoginHeadingArea>
 
-        <LoginForm noValidate onSubmit={(event) => void handleSubmit(event)}>
-          <FieldGroup>
-            <TextInput
-              id={loginIdInputId}
-              name="loginId"
-              size="medium"
-              value={loginId}
-              placeholder="아이디"
-              aria-label="아이디"
-              autoComplete="username"
-              error={fieldErrors.loginId}
-              onChange={(value) => {
-                setLoginId(value);
-                setFieldErrors((currentErrors) => ({
-                  ...currentErrors,
-                  loginId: undefined,
-                }));
-              }}
-            />
-            <TextInput
-              id={passwordInputId}
-              name="password"
-              type="password"
-              size="medium"
-              value={password}
-              placeholder="비밀번호"
-              aria-label="비밀번호"
-              autoComplete="current-password"
-              showPasswordToggle
-              error={fieldErrors.password}
-              onChange={(value) => {
-                setPassword(value);
-                setFieldErrors((currentErrors) => ({
-                  ...currentErrors,
-                  password: undefined,
-                }));
-              }}
-            />
-          </FieldGroup>
+        <LoginPanel>
+          <LoginForm noValidate onSubmit={(event) => void handleSubmit(event)}>
+            <FieldGroup>
+              <LoginField>
+                <LoginFieldLabel htmlFor={loginIdInputId}>
+                  아이디
+                </LoginFieldLabel>
+                <TextInput
+                  id={loginIdInputId}
+                  name="loginId"
+                  size="large"
+                  value={loginId}
+                  placeholder="아이디를 입력하세요"
+                  aria-label="아이디"
+                  autoComplete="username"
+                  error={fieldErrors.loginId}
+                  onChange={(value) => {
+                    setLoginId(value);
+                    setFieldErrors((currentErrors) => ({
+                      ...currentErrors,
+                      loginId: undefined,
+                    }));
+                  }}
+                />
+              </LoginField>
+              <LoginField>
+                <LoginFieldLabel htmlFor={passwordInputId}>
+                  비밀번호
+                </LoginFieldLabel>
+                <TextInput
+                  id={passwordInputId}
+                  name="password"
+                  type="password"
+                  size="large"
+                  value={password}
+                  placeholder="비밀번호를 입력하세요"
+                  aria-label="비밀번호"
+                  autoComplete="current-password"
+                  error={fieldErrors.password}
+                  onChange={(value) => {
+                    setPassword(value);
+                    setFieldErrors((currentErrors) => ({
+                      ...currentErrors,
+                      password: undefined,
+                    }));
+                  }}
+                />
+              </LoginField>
+            </FieldGroup>
 
-          {submissionError && (
-            <FormError role="alert">{submissionError}</FormError>
-          )}
+            {submissionError && (
+              <FormError role="alert">{submissionError}</FormError>
+            )}
 
-          <LoginSubmitButton
-            variant="primary"
-            size="large"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "로그인 중..." : "로그인"}
-          </LoginSubmitButton>
+            <LoginSubmitButton
+              variant="primary"
+              size="large"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "로그인 중..." : "로그인"}
+            </LoginSubmitButton>
 
-          <AccountHelpLinks aria-label="계정 도움말 바로가기">
-            <AccountHelpLink href="#login-help">아이디 찾기</AccountHelpLink>
-            <AccountHelpSeparator aria-hidden="true" />
-            <AccountHelpLink href="#login-help">비밀번호 찾기</AccountHelpLink>
-          </AccountHelpLinks>
-        </LoginForm>
-
-        <SectionDivider role="separator" />
+            <AccountHelpLinks aria-label="계정 도움말 바로가기">
+              <AccountHelpLink href="#login-help">아이디 찾기</AccountHelpLink>
+              <AccountHelpSeparator aria-hidden="true" />
+              <AccountHelpLink href="#login-help">비밀번호 찾기</AccountHelpLink>
+              <AccountHelpSeparator aria-hidden="true" />
+              <AccountHelpLink href="#login-help">회원가입</AccountHelpLink>
+            </AccountHelpLinks>
+          </LoginForm>
+        </LoginPanel>
 
         <HelpCard id="login-help" aria-labelledby="login-help-title">
           <HelpTitle id="login-help-title">
             <HelpIcon aria-hidden="true">i</HelpIcon>
             로그인에 어려움이 있으신가요?
           </HelpTitle>
-          <HelpList type="dash">
+          <HelpList>
+            <li>아이디가 기억나지 않는다면 '아이디 찾기'를 이용해 주세요.</li>
+            <li>비밀번호를 잊으셨다면 '비밀번호 재설정'을 이용해 주세요.</li>
             <li>
-              아이디 또는 비밀번호를 잊으신 경우 시스템 관리자에게 문의해
-              주세요.
+              042-611-2114으로 전화주세요. 서비스에 로그인할 수 있도록
+              도와드리겠습니다.
             </li>
-            <li>접속 오류가 계속되면 대표전화 042-611-2114로 문의해 주세요.</li>
           </HelpList>
         </HelpCard>
       </LoginContent>
