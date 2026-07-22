@@ -9,6 +9,17 @@ export type {
   CareerCertificateIssueView,
   CertificateIssueType,
 } from "./career-certificate/CareerCertificateIssue";
+export { default as CareerEdit } from "./career-edit/CareerEdit";
+export type {
+  CareerEditApplicant,
+  CareerEditGender,
+  CareerEditPersonalInfo,
+  CareerEditProps,
+  CareerEditReason,
+  CareerEditRecord,
+  CareerEditSubmission,
+  CareerEditTarget,
+} from "./career-edit/CareerEdit";
 export { default as UserHome } from "./home/UserHome";
 export type { UserHomeProps } from "./home/UserHome";
 export { default as RegistrationMethodSelector } from "./registration-method/RegistrationMethodSelector";
