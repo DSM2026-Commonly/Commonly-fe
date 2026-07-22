@@ -2,7 +2,7 @@ import {
   IndividualRegistrationCareer,
   type IndividualRegistrationSubjectData,
 } from "@commonly/ui";
-import { useLocation, useNavigate } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 
 interface IndividualRegistrationCareerState {
   subject?: IndividualRegistrationSubjectData;
@@ -12,6 +12,11 @@ function IndividualRegistrationCareerPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const state = location.state as IndividualRegistrationCareerState | null;
+  const subject = state?.subject;
+
+  if (!subject) {
+    return <Navigate to="/career/register/individual/subject" replace />;
+  }
 
   return (
     <IndividualRegistrationCareer
@@ -19,7 +24,7 @@ function IndividualRegistrationCareerPage() {
       onSubmit={(career) =>
         void navigate("/career/register/individual/complete", {
           state: {
-            subjectName: state?.subject?.name,
+            subjectName: subject.name,
             duties: career.duties,
           },
         })
