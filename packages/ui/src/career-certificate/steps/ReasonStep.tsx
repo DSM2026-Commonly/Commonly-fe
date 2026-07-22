@@ -48,7 +48,6 @@ function ReasonStep({
 
       <TextareaFrame>
         <Textarea
-          aria-label="신청 도서관에 남길 말"
           placeholder="상세 내용을 입력하세요"
           value={note}
           onChange={onNoteChange}
