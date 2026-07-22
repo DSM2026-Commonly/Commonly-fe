@@ -1,0 +1,29 @@
+export type CareerCertificateIssueView =
+  | "notice"
+  | "reason"
+  | "applicant"
+  | "details"
+  | "preview"
+  | "success";
+
+export type CertificateIssueType = "all" | "selected";
+
+export interface CareerCertificateApplicationData {
+  issueType: CertificateIssueType;
+  reason: string;
+  note: string;
+  applicantName: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  selectedCareerIds: string[];
+  additionalNote: string;
+  purpose: string;
+}
+
+export interface CareerCertificateIssueProps {
+  initialView?: CareerCertificateIssueView;
+  onCancel?: () => void;
+  onComplete?: (data: CareerCertificateApplicationData) => void;
+  onDownload?: () => void;
+}

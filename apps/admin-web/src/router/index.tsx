@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AdminLayout from "../layout/AdminLayout";
+import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
 import HomePage from "../pages/HomePage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
 import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUploadPage";
@@ -17,12 +18,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/issue",
-        element: (
-          <RoutePlaceholderPage
-            title="경력증명서 발급"
-            description="경력증명서 발급 페이지를 준비 중입니다."
-          />
-        ),
+        Component: CareerCertificateIssuePage,
       },
       {
         path: "career/register",
