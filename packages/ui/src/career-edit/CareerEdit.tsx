@@ -2,7 +2,6 @@ import "krds-react/dist/index.css";
 
 import { useId, useState } from "react";
 import {
-  Badge,
   Button,
   Radio,
   RadioGroup,
@@ -70,7 +69,6 @@ import {
   StageTitle,
   StepIndicatorFrame,
   SuccessActions,
-  SuccessBadge,
   SuccessMessage,
   SuccessPage,
   SuccessTitle,
@@ -878,11 +876,6 @@ function SuccessView({
 }: SuccessViewProps) {
   return (
     <SuccessPage aria-labelledby={headingId} aria-live="polite">
-      <SuccessBadge>
-        <Badge variant="light" color="success" size="large" rounded>
-          수정 완료
-        </Badge>
-      </SuccessBadge>
       <SuccessTitle id={headingId}>
         경력사항 수정
       </SuccessTitle>

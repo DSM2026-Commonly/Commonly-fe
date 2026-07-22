@@ -286,10 +286,6 @@ export const SuccessPage = styled.div`
   }
 `;
 
-export const SuccessBadge = styled.div`
-  margin-bottom: 20px;
-`;
-
 export const SuccessTitle = styled.h1`
   margin: 0;
   color: var(--career-edit-text);
