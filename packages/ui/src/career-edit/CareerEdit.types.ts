@@ -30,14 +30,25 @@ export interface CareerEditRecord {
   note: string;
 }
 
-export interface CareerEditSubmission {
+interface CareerEditSubmissionBase {
   reason: CareerEditReason;
   reasonDetail: string;
   applicant: CareerEditApplicant;
-  editTarget: CareerEditTarget;
+}
+
+interface CareerEditPersonalSubmission extends CareerEditSubmissionBase {
+  editTarget: "personal";
   personalInfo: CareerEditPersonalInfo;
+}
+
+interface CareerEditRecordSubmission extends CareerEditSubmissionBase {
+  editTarget: "career";
   record: CareerEditRecord;
 }
+
+export type CareerEditSubmission =
+  | CareerEditPersonalSubmission
+  | CareerEditRecordSubmission;
 
 export interface CareerEditProps {
   initialStep?: 0 | 1 | 2 | 3 | 4;

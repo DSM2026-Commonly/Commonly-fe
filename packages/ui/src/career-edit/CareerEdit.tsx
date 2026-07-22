@@ -1160,18 +1160,27 @@ function CareerEdit({
       return;
     }
 
-    const submission: CareerEditSubmission = {
+    const submissionBase = {
       reason,
       reasonDetail,
       applicant: selectedApplicant,
-      editTarget,
-      personalInfo: { ...personalInfo },
-      record: {
-        ...draftRecord,
-        startDate: normalizeEditableDate(draftRecord.startDate),
-        endDate: normalizeEditableDate(draftRecord.endDate),
-      },
     };
+    const submission: CareerEditSubmission =
+      editTarget === "personal"
+        ? {
+            ...submissionBase,
+            editTarget: "personal",
+            personalInfo: { ...personalInfo },
+          }
+        : {
+            ...submissionBase,
+            editTarget: "career",
+            record: {
+              ...draftRecord,
+              startDate: normalizeEditableDate(draftRecord.startDate),
+              endDate: normalizeEditableDate(draftRecord.endDate),
+            },
+          };
 
     onComplete?.(submission);
     setCompletedSubmission(submission);
