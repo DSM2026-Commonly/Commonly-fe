@@ -204,24 +204,6 @@ export const InformationList = styled(TextList)`
   color: var(--krds-light-color-text-subtle, #464c53);
   font-size: 17px;
   line-height: 1.5;
-  list-style: none;
-
-  & > li {
-    position: relative;
-    margin: 0;
-    padding: 0 0 0 32px;
-  }
-
-  & > li::before {
-    position: absolute;
-    top: 10px;
-    left: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    content: "";
-  }
 `;
 
 export const InformationListItem = styled.li``;

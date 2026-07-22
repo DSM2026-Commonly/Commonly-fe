@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { FileUpload } from "krds-react";
 
 export const UploadRoot = styled.section`
   display: flex;
@@ -104,79 +105,51 @@ export const FormMainContent = styled.div`
   gap: 0;
 `;
 
-export const UploadDropzone = styled.div`
-  display: flex;
-  min-height: 181px;
-  padding: 40px 24px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  background: var(--krds-light-color-surface-gray-subtle, #e6e8ea);
-`;
+export const StyledFileUpload = styled(FileUpload)`
+  &.krds-file-upload.line {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    gap: 24px;
+  }
 
-export const UploadText = styled.p`
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.5;
-  text-align: center;
-`;
+  .file-upload {
+    min-height: 181px;
+    padding: 40px 24px;
+    border-radius: 8px;
+    gap: 18px;
+  }
 
-export const UploadButtonWrap = styled.div`
-  display: flex;
+  .file-upload .txt {
+    font-size: 15px;
+    line-height: 1.5;
+  }
 
-  .krds-btn {
+  .file-upload-btn-wrap .krds-btn {
     min-width: 73px;
     min-height: 40px;
     padding: 0 14px;
     border-radius: 5px;
   }
-`;
 
-export const HiddenFileInput = styled.input`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-`;
-
-export const SelectedFileList = styled.ul`
-  display: flex;
-  margin: 24px 0 0;
-  padding: 0;
-  flex-direction: column;
-  gap: 8px;
-  list-style: none;
-`;
-
-export const SelectedFileItem = styled.li`
-  display: flex;
-  min-height: 40px;
-  padding: 0 12px 0 20px;
-  box-sizing: border-box;
-  border: 1px solid var(--krds-light-color-border-gray-light, #cdd1d5);
-  border-radius: 5px;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--krds-light-color-surface-white, #fff);
-
-  &[data-status="error"] {
-    border-color: var(--krds-light-color-border-danger, #de3412);
+  .file-list {
+    gap: 8px;
   }
-`;
 
-export const FileName = styled.span`
-  min-width: 0;
-  overflow: hidden;
-  font-size: 13px;
-  line-height: 1.5;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  .file-list .total {
+    display: none;
+  }
+
+  .file-list .upload-list {
+    gap: 8px;
+  }
+
+  .file-list .upload-list > li {
+    min-height: 40px;
+    padding: 8px 12px 8px 20px;
+    border-radius: 5px;
+    background: var(--krds-light-color-surface-white, #fff);
+  }
 `;
 
 export const ActionBar = styled.div`
