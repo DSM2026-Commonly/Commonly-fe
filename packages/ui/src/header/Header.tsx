@@ -110,11 +110,23 @@ const Header = ({
             <UtilityText $width={125}>
               남은시간 00분 00초
             </UtilityText>
-            <UtilityButton type="button" $width={30} onClick={onExtend}>
+            <UtilityButton
+              variant="text"
+              size="small"
+              type="button"
+              $width={30}
+              onClick={onExtend}
+            >
               연장
             </UtilityButton>
             <UtilityDivider aria-hidden="true" />
-            <UtilityButton type="button" $width={56} onClick={onLogout}>
+            <UtilityButton
+              variant="text"
+              size="small"
+              type="button"
+              $width={56}
+              onClick={onLogout}
+            >
               로그아웃
             </UtilityButton>
           </UtilityRow>
@@ -123,6 +135,8 @@ const Header = ({
         <MainRow>
           <BrandLink
             href="/"
+            variant="unstyled"
+            underline="none"
             aria-label={`유성구 ${configuration.title} 홈`}
             $width={configuration.brandWidth}
             onClick={(event) => handleNavigation(event, "/")}
@@ -145,6 +159,8 @@ const Header = ({
                   <li key={menu.id}>
                     <PrimaryNavigationLink
                       href={menu.href}
+                      variant="unstyled"
+                      underline="none"
                       $width={menu.width}
                       onClick={(event) =>
                         handleNavigation(event, menu.href)

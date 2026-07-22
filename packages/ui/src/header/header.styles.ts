@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Button, Link } from "krds-react";
 
 interface FixedWidthProps {
   $width: number;
@@ -79,7 +80,9 @@ export const UtilityDivider = styled.span`
   background: #cdd1d5;
 `;
 
-export const UtilityButton = styled.button<FixedWidthProps>`
+export const UtilityButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "$width",
+})<FixedWidthProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -127,6 +130,20 @@ export const UtilityButton = styled.button<FixedWidthProps>`
   @media (prefers-reduced-motion: reduce) {
     transition: none;
   }
+
+  &.krds-btn {
+    width: ${({ $width }) => `${$width}px`};
+    min-width: 0;
+    height: 24px;
+    min-height: 0;
+    padding: 0 2px;
+    flex: 0 0 ${({ $width }) => `${$width}px`};
+    color: #1e2124;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
 `;
 
 export const MainRow = styled.div`
@@ -145,7 +162,9 @@ export const MainRow = styled.div`
   }
 `;
 
-export const BrandLink = styled.a<FixedWidthProps>`
+export const BrandLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "$width",
+})<FixedWidthProps>`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -159,6 +178,38 @@ export const BrandLink = styled.a<FixedWidthProps>`
     border-radius: 4px;
     outline: 2px solid #246beb;
     outline-offset: 2px;
+  }
+
+  &.krds-btn.link {
+    display: flex;
+    width: ${({ $width }) => `${$width}px`};
+    min-width: 0;
+    height: 41.148px !important;
+    min-height: 0;
+    padding: 0 !important;
+    border: 0;
+    aspect-ratio: auto;
+    flex: 0 0 ${({ $width }) => `${$width}px`};
+    flex-wrap: nowrap;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &.krds-btn.link > span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    flex-basis: 41.148px;
+
+    &.krds-btn.link {
+      flex-basis: 41.148px;
+    }
   }
 `;
 
@@ -209,7 +260,9 @@ export const PrimaryNavigationList = styled.ul`
   }
 `;
 
-export const PrimaryNavigationLink = styled.a<FixedWidthProps>`
+export const PrimaryNavigationLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "$width",
+})<FixedWidthProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -234,5 +287,21 @@ export const PrimaryNavigationLink = styled.a<FixedWidthProps>`
   &:focus-visible {
     outline: 2px solid #246beb;
     outline-offset: -2px;
+  }
+
+  &.krds-btn.link {
+    display: flex;
+    width: ${({ $width }) => `${$width}px`};
+    min-width: 0;
+    height: 40px !important;
+    min-height: 0;
+    padding: 0 12px !important;
+    aspect-ratio: auto;
+    color: #1e2124;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
   }
 `;

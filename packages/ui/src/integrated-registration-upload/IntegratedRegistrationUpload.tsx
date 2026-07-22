@@ -1,7 +1,6 @@
 import "krds-react/dist/index.css";
 
-import { useId, useMemo, useRef, useState } from "react";
-import type { ChangeEvent, DragEvent } from "react";
+import { useId, useMemo, useState } from "react";
 import {
   Button,
   StepIndicator,
@@ -10,23 +9,17 @@ import {
 import {
   ActionBar,
   ButtonGroup,
-  FileName,
   FormFlow,
   FormMainContent,
-  HiddenFileInput,
   PageHeader,
   PageTitle,
-  SelectedFileItem,
-  SelectedFileList,
   StepCurrentText,
   StepEyebrow,
   StepHeader,
   StepTitle,
+  StyledFileUpload,
   StyledStepIndicator,
-  UploadButtonWrap,
-  UploadDropzone,
   UploadRoot,
-  UploadText,
 } from "./integratedRegistrationUpload.styles";
 
 export interface IntegratedRegistrationUploadStep {
@@ -72,8 +65,6 @@ function IntegratedRegistrationUpload({
   onNext,
 }: IntegratedRegistrationUploadProps) {
   const titleId = useId();
-  const fileInputId = useId();
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<FileItem[]>([]);
 
   const canProceed = useMemo(
@@ -83,66 +74,6 @@ function IntegratedRegistrationUpload({
       Boolean(onNext),
     [files, onNext],
   );
-
-  const formatFileSize = (size: number) => {
-    if (size === 0) {
-      return "0B";
-    }
-
-    const unit = 1024;
-    const units = ["B", "KB", "MB", "GB"] as const;
-    const unitIndex = Math.min(
-      Math.floor(Math.log(size) / Math.log(unit)),
-      units.length - 1,
-    );
-
-    return `${Number((size / unit ** unitIndex).toFixed(1))}${units[unitIndex]}`;
-  };
-
-  const getFileExtension = (fileName: string) =>
-    fileName.split(".").pop()?.toLowerCase() ?? "";
-
-  const buildFileItem = (file: File, index: number): FileItem => {
-    const extension = getFileExtension(file.name);
-    const isAccepted = acceptedFileTypes.includes(extension);
-    const isUnderLimit = file.size <= maxFileSize;
-    const hasError = !isAccepted || !isUnderLimit;
-
-    return {
-      id: `${file.name}-${file.lastModified}-${index}`,
-      name: file.name,
-      size: file.size,
-      type: extension,
-      status: hasError ? "error" : "ready",
-      errorMessage: hasError
-        ? !isAccepted
-          ? `${acceptedFileTypes.join(", ")} 파일만 업로드할 수 있습니다.`
-          : "등록 가능한 파일 용량을 초과하였습니다."
-        : undefined,
-    };
-  };
-
-  const handleFiles = (fileList: FileList | null) => {
-    if (!fileList?.length) {
-      return;
-    }
-
-    setFiles(Array.from(fileList).slice(0, maxFiles).map(buildFileItem));
-  };
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    handleFiles(event.target.files);
-    event.target.value = "";
-  };
-
-  const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
-
-  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    handleFiles(event.dataTransfer.files);
-  };
 
   const handleNext = () => {
     if (!canProceed) {
@@ -179,38 +110,15 @@ function IntegratedRegistrationUpload({
         </StepHeader>
 
         <FormMainContent>
-          <UploadDropzone onDragOver={handleDragOver} onDrop={handleDrop}>
-            <UploadText>{uploadText}</UploadText>
-            <UploadButtonWrap>
-              <HiddenFileInput
-                ref={fileInputRef}
-                id={fileInputId}
-                type="file"
-                accept={acceptedFileTypes.map((type) => `.${type}`).join(",")}
-                onChange={handleInputChange}
-              />
-              <Button
-                variant="primary"
-                size="medium"
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                파일선택
-              </Button>
-            </UploadButtonWrap>
-          </UploadDropzone>
-
-          {files.length > 0 && (
-            <SelectedFileList aria-label="첨부 파일 목록">
-              {files.map((file) => (
-                <SelectedFileItem key={file.id} data-status={file.status}>
-                  <FileName>
-                    {file.name} [{file.type}, {formatFileSize(file.size)}]
-                  </FileName>
-                </SelectedFileItem>
-              ))}
-            </SelectedFileList>
-          )}
+          <StyledFileUpload
+            aria-label="첨부 파일 업로드"
+            uploadText={uploadText}
+            acceptedFileTypes={acceptedFileTypes}
+            maxFiles={maxFiles}
+            maxFileSize={maxFileSize}
+            files={files}
+            onFilesChange={setFiles}
+          />
         </FormMainContent>
 
         <ActionBar>

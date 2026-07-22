@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { TextList } from "krds-react";
 
 export const RegistrationNoticeRoot = styled.section`
   display: flex;
@@ -158,35 +159,13 @@ export const NoticeHeading = styled.h3`
   line-height: 1.5;
 `;
 
-export const StyledTextList = styled.ul`
-  display: flex;
+export const StyledTextList = styled(TextList)`
   min-height: 102px;
   margin: 0;
-  padding: 0;
-  flex-direction: column;
-  gap: 12px;
+  --krds-info-list--gap-layout-depth1-li-li: 12px;
   color: var(--krds-light-color-text-subtle, #464c53);
   font-size: 17px;
   line-height: 1.5;
-  list-style: none;
-
-  & > li {
-    position: relative;
-    min-height: 26px;
-    margin: 0;
-    padding-left: 32px;
-  }
-
-  & > li::before {
-    position: absolute;
-    top: 10px;
-    left: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    content: "";
-  }
 `;
 
 export const AgreementBand = styled.div`
