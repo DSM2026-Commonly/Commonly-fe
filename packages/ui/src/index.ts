@@ -31,32 +31,47 @@ export type {
   RegistrationMethodOption,
   RegistrationMethodSelectorProps,
 } from "./registration-method/RegistrationMethodSelector";
-export { default as IntegratedRegistrationNotice } from "./integrated-registration/IntegratedRegistrationNotice";
+export { default as IntegratedRegistrationNotice } from "./registration/integrated-registration/IntegratedRegistrationNotice";
 export type {
   IntegratedRegistrationNoticeProps,
   IntegratedRegistrationNoticeStep,
-} from "./integrated-registration/IntegratedRegistrationNotice";
-export { default as IntegratedRegistrationUpload } from "./integrated-registration-upload/IntegratedRegistrationUpload";
+} from "./registration/integrated-registration/IntegratedRegistrationNotice";
+export { default as IndividualRegistrationSubject } from "./registration/individual-registration-subject/IndividualRegistrationSubject";
+export type {
+  IndividualRegistrationDuplicateCandidate,
+  IndividualRegistrationSubjectData,
+  IndividualRegistrationSubjectProps,
+  IndividualRegistrationSubjectStep,
+} from "./registration/individual-registration-subject/IndividualRegistrationSubject";
+export { default as IndividualRegistrationCareer } from "./registration/individual-registration-career/IndividualRegistrationCareer";
+export type {
+  IndividualRegistrationCareerData,
+  IndividualRegistrationCareerProps,
+  IndividualRegistrationCareerStep,
+} from "./registration/individual-registration-career/IndividualRegistrationCareer";
+export { default as IndividualRegistrationComplete } from "./registration/individual-registration-complete/IndividualRegistrationComplete";
+export type { IndividualRegistrationCompleteProps } from "./registration/individual-registration-complete/IndividualRegistrationComplete";
+export { default as IntegratedRegistrationUpload } from "./registration/integrated-registration-upload/IntegratedRegistrationUpload";
 export type {
   IntegratedRegistrationUploadProps,
   IntegratedRegistrationUploadStep,
-} from "./integrated-registration-upload/IntegratedRegistrationUpload";
-export { default as IntegratedRegistrationConfirm } from "./integrated-registration-confirm/IntegratedRegistrationConfirm";
+} from "./registration/integrated-registration-upload/IntegratedRegistrationUpload";
+export { default as IntegratedRegistrationConfirm } from "./registration/integrated-registration-confirm/IntegratedRegistrationConfirm";
 export type {
   IntegratedRegistrationConfirmField,
   IntegratedRegistrationConfirmMapping,
   IntegratedRegistrationConfirmProps,
   IntegratedRegistrationConfirmStep,
-} from "./integrated-registration-confirm/IntegratedRegistrationConfirm";
-export { default as IntegratedRegistrationPreview } from "./integrated-registration-preview/IntegratedRegistrationPreview";
+} from "./registration/integrated-registration-confirm/IntegratedRegistrationConfirm";
+export { default as IntegratedRegistrationPreview } from "./registration/integrated-registration-preview/IntegratedRegistrationPreview";
 export type {
   IntegratedRegistrationPreviewField,
   IntegratedRegistrationPreviewProps,
   IntegratedRegistrationPreviewStep,
-} from "./integrated-registration-preview/IntegratedRegistrationPreview";
-export { default as IntegratedRegistrationComplete } from "./integrated-registration-complete/IntegratedRegistrationComplete";
+} from "./registration/integrated-registration-preview/IntegratedRegistrationPreview";
+export { default as IntegratedRegistrationComplete } from "./registration/integrated-registration-complete/IntegratedRegistrationComplete";
 export type {
   IntegratedRegistrationCompleteProps,
   IntegratedRegistrationCompleteResult,
-} from "./integrated-registration-complete/IntegratedRegistrationComplete";
+} from "./registration/integrated-registration-complete/IntegratedRegistrationComplete";
 export { default as useScrollToTopOnChange } from "./hooks/useScrollToTopOnChange";

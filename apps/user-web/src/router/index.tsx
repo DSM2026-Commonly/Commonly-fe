@@ -8,6 +8,10 @@ import UserLayout from "../layout/UserLayout";
 import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
 import CareerEditPage from "../pages/CareerEditPage";
 import HomePage from "../pages/HomePage";
+import IndividualRegistrationCareerPage from "../pages/IndividualRegistrationCareerPage";
+import IndividualRegistrationCompletePage from "../pages/IndividualRegistrationCompletePage";
+import IndividualRegistrationNoticePage from "../pages/IndividualRegistrationNoticePage";
+import IndividualRegistrationSubjectPage from "../pages/IndividualRegistrationSubjectPage";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
 import IntegratedRegistrationCompletePage from "../pages/IntegratedRegistrationCompletePage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
@@ -58,12 +62,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/register/individual",
-        element: (
-          <RoutePlaceholderPage
-            title="경력사항 개별 등록"
-            description="경력사항을 직접 입력하여 등록해 주세요."
-          />
-        ),
+        Component: IndividualRegistrationNoticePage,
+      },
+      {
+        path: "career/register/individual/subject",
+        Component: IndividualRegistrationSubjectPage,
+      },
+      {
+        path: "career/register/individual/career",
+        Component: IndividualRegistrationCareerPage,
+      },
+      {
+        path: "career/register/individual/complete",
+        Component: IndividualRegistrationCompletePage,
       },
       {
         path: "career/register/bulk",

@@ -6,7 +6,8 @@ import {
   Checkbox,
   StepIndicator,
 } from "krds-react";
-import bookIcon from "../assets/[U-regi-02] 통합 등록 페이지 - 1/icon/book.svg";
+import bookIcon from "../../assets/[U-regi-02] 통합 등록 페이지 - 1/icon/book.svg";
+import guideCheckIcon from "../../assets/guide_check.svg";
 import {
   ActionBar,
   ButtonGroup,
@@ -35,6 +36,7 @@ export interface IntegratedRegistrationNoticeStep {
 }
 
 export interface IntegratedRegistrationNoticeProps {
+  variant?: "bulk" | "individual";
   title?: string;
   steps?: readonly IntegratedRegistrationNoticeStep[];
   currentStep?: number;
@@ -64,6 +66,7 @@ const defaultNoticeItems = [
 ] as const;
 
 function IntegratedRegistrationNotice({
+  variant = "bulk",
   title = "경력사항 통합 등록",
   steps = defaultSteps,
   currentStep = 0,
@@ -93,7 +96,10 @@ function IntegratedRegistrationNotice({
   };
 
   return (
-    <RegistrationNoticeRoot aria-labelledby={titleId}>
+    <RegistrationNoticeRoot
+      aria-labelledby={titleId}
+      $individual={variant === "individual"}
+    >
       <PageHeader>
         <PageTitle id={titleId}>{title}</PageTitle>
         <StyledStepIndicator>
@@ -109,7 +115,7 @@ function IntegratedRegistrationNotice({
         </StyledStepIndicator>
       </PageHeader>
 
-      <FormFlow>
+      <FormFlow $individual={variant === "individual"}>
         <StepHeader>
           <StepEyebrow>
             <StepCurrentText>{stepLabel.split(" / ")[0]}</StepCurrentText>
@@ -121,7 +127,11 @@ function IntegratedRegistrationNotice({
         <FormMainContent>
           <GuideCard>
             <GuideTitle>
-              <GuideIcon src={bookIcon} alt="" aria-hidden="true" />
+              <GuideIcon
+                src={variant === "individual" ? guideCheckIcon : bookIcon}
+                alt=""
+                aria-hidden="true"
+              />
               {guideTitle}
             </GuideTitle>
             <GuideBody>{guideDescription}</GuideBody>
@@ -149,10 +159,10 @@ function IntegratedRegistrationNotice({
           </AgreementBand>
         </FormMainContent>
 
-        <ActionBar>
-          <ButtonGroup>
+        <ActionBar $individual={variant === "individual"}>
+          <ButtonGroup $individual={variant === "individual"}>
             <Button
-              variant="secondary"
+              variant={variant === "individual" ? "tertiary" : "secondary"}
               size="xlarge"
               type="button"
               onClick={onPrevious}
@@ -160,7 +170,7 @@ function IntegratedRegistrationNotice({
               {previousLabel}
             </Button>
           </ButtonGroup>
-          <ButtonGroup>
+          <ButtonGroup $individual={variant === "individual"}>
             <Button
               variant="primary"
               size="xlarge"
