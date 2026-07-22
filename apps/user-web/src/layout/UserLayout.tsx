@@ -2,9 +2,10 @@ import {
   ApplicationShell,
   type FooterProps,
   type HeaderProps,
+  useScrollToTopOnChange,
 } from "@commonly/ui";
 import type { ReactNode } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
 export interface UserLayoutProps {
   children?: ReactNode;
@@ -18,6 +19,13 @@ function UserLayout({
   footerProps,
 }: UserLayoutProps) {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isCareerRegistrationPath =
+    pathname === "/career/register" ||
+    pathname.startsWith("/career/register/");
+
+  useScrollToTopOnChange(pathname, isCareerRegistrationPath);
+
   const handleNavigate =
     headerProps?.onNavigate ?? ((href: string) => void navigate(href));
 

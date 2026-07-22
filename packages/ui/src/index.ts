@@ -57,3 +57,4 @@ export type {
   IntegratedRegistrationCompleteProps,
   IntegratedRegistrationCompleteResult,
 } from "./integrated-registration-complete/IntegratedRegistrationComplete";
+export { default as useScrollToTopOnChange } from "./hooks/useScrollToTopOnChange";

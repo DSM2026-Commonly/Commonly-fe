@@ -131,7 +131,7 @@ function IntegratedRegistrationNotice({
             <NoticeHeading id="integrated-registration-notice-title">
               {noticeTitle}
             </NoticeHeading>
-            <StyledTextList>
+            <StyledTextList type="decimal">
               {noticeItems.map((item) => (
                 <li key={item}>{item}</li>
               ))}

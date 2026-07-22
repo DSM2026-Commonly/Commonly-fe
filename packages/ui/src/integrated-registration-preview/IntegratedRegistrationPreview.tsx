@@ -128,6 +128,7 @@ function IntegratedRegistrationPreview({
                   <DisabledValueInput
                     id={`${titleId}-${field.id}`}
                     value={field.value}
+                    size="large"
                     disabled
                     aria-label={`${field.label.replace("\n", " ")} 예시 값`}
                   />
