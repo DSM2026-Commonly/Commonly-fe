@@ -5,7 +5,7 @@ export type { ApplicationShellProps } from "./layout/ApplicationShell";
 export { default as Header } from "./header/Header";
 export type { HeaderProps, HeaderVariant } from "./header/Header";
 export { default as Login } from "./login/Login";
-export type { LoginFormData, LoginProps } from "./login/Login";
+export type { LoginFormData, LoginProps, LoginVariant } from "./login/Login";
 export { default as CareerCertificateIssue } from "./career-certificate/CareerCertificateIssue";
 export type {
   CareerCertificateApplicationData,

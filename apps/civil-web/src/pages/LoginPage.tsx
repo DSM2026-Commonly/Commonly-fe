@@ -38,6 +38,7 @@ function LoginPage() {
     <Login
       initialLoginId={getRememberedLoginId()}
       onSubmit={handleLogin}
+      variant="civil"
     />
   );
 }
