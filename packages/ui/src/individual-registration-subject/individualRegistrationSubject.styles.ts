@@ -130,6 +130,10 @@ export const FormCard = styled.form`
     border-radius: 8px;
   }
 
+  .krds-form-select.completed {
+    color: var(--krds-light-color-text-basic, #1e2124);
+  }
+
   @media (max-width: 767px) {
     min-height: auto;
     padding: 28px 20px;

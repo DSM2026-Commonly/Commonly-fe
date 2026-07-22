@@ -344,6 +344,7 @@ function IndividualRegistrationSubject({
                 <Select
                   id={`${titleId}-birth-year`}
                   size="large"
+                  className={birthYear ? "completed" : undefined}
                   aria-label="출생 연도"
                   options={YEAR_OPTIONS}
                   value={birthYear}

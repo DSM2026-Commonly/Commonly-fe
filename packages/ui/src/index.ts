@@ -28,6 +28,12 @@ export type {
   IndividualRegistrationSubjectProps,
   IndividualRegistrationSubjectStep,
 } from "./individual-registration-subject/IndividualRegistrationSubject";
+export { default as IndividualRegistrationCareer } from "./individual-registration-career/IndividualRegistrationCareer";
+export type {
+  IndividualRegistrationCareerData,
+  IndividualRegistrationCareerProps,
+  IndividualRegistrationCareerStep,
+} from "./individual-registration-career/IndividualRegistrationCareer";
 export { default as IntegratedRegistrationUpload } from "./integrated-registration-upload/IntegratedRegistrationUpload";
 export type {
   IntegratedRegistrationUploadProps,
