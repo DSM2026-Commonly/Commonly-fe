@@ -36,6 +36,7 @@ import {
   DateFields,
   FieldGroup,
 } from "./individualRegistrationCareer.styles";
+import { isValidCareerDateRange } from "./IndividualRegistrationCareer.validation";
 
 export interface IndividualRegistrationCareerStep {
   id: string;
@@ -136,6 +137,14 @@ function IndividualRegistrationCareer({
       career.startDay,
     ) &&
     isValidBirthDate(career.endYear, career.endMonth, career.endDay) &&
+    isValidCareerDateRange(
+      career.startYear,
+      career.startMonth,
+      career.startDay,
+      career.endYear,
+      career.endMonth,
+      career.endDay,
+    ) &&
     Boolean(career.resignationReason.trim());
 
   const updateField = <Key extends keyof IndividualRegistrationCareerData>(
