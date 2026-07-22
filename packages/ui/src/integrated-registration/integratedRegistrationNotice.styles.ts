@@ -12,7 +12,7 @@ export const RegistrationNoticeRoot = styled.section<IndividualLayoutProps>`
   padding: 88px 0 64px;
   box-sizing: border-box;
   flex-direction: column;
-  gap: ${({ $individual }) => ($individual ? "48px" : "20px")};
+  gap: 48px;
   color: var(--krds-light-color-text-basic, #1e2124);
   font-family:
     "Pretendard GOV", Pretendard, "Noto Sans KR", "Malgun Gothic", sans-serif;
@@ -191,7 +191,7 @@ export const AgreementBand = styled.div`
 export const ActionBar = styled.div<IndividualLayoutProps>`
   display: flex;
   min-height: ${({ $individual }) => ($individual ? "64px" : "68px")};
-  margin-top: ${({ $individual }) => ($individual ? "0" : "40px")};
+  margin-top: 0px;
   justify-content: space-between;
   gap: 16px;
 
