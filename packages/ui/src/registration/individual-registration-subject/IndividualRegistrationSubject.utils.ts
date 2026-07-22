@@ -17,5 +17,5 @@ export const findDuplicateCandidates = (
       candidate.birthYear === subject.birthYear &&
       candidate.birthMonth === subject.birthMonth.padStart(2, "0") &&
       candidate.birthDay === subject.birthDay.padStart(2, "0") &&
-      candidate.address === subject.address,
+      candidate.address === subject.address.trim(),
   );
