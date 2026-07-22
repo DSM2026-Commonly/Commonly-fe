@@ -9,6 +9,8 @@ export type {
   CareerCertificateIssueView,
   CertificateIssueType,
 } from "./career-certificate/CareerCertificateIssue";
+export { default as UserHome } from "./home/UserHome";
+export type { UserHomeProps } from "./home/UserHome";
 export { default as RegistrationMethodSelector } from "./registration-method/RegistrationMethodSelector";
 export type {
   RegistrationMethodOption,
