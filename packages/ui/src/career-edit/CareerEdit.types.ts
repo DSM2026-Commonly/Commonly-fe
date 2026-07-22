@@ -40,7 +40,7 @@ export interface CareerEditSubmission {
 }
 
 export interface CareerEditProps {
-  initialStep?: 0 | 1 | 2 | 3;
+  initialStep?: 0 | 1 | 2 | 3 | 4;
   initialEditTarget?: CareerEditTarget;
   applicants?: readonly CareerEditApplicant[];
   careerRecords?: readonly CareerEditRecord[];

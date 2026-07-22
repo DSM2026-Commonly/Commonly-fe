@@ -51,6 +51,7 @@ import {
   RadioSection as ReasonRadioSection,
   TextareaFrame as ReasonTextareaFrame,
 } from "../career-certificate/steps/ReasonStep.styles";
+import CareerEditNoticeStep from "./CareerEditNoticeStep";
 import {
   ActionRow,
   AddressFields,
@@ -100,7 +101,7 @@ export type {
   CareerEditTarget,
 } from "./CareerEdit.types";
 
-type CareerEditStep = 0 | 1 | 2 | 3;
+type CareerEditStep = 0 | 1 | 2 | 3 | 4;
 type EditableCareerField = Exclude<keyof CareerEditRecord, "id">;
 
 interface ReasonStepProps {
@@ -933,10 +934,11 @@ function CareerEdit({
   onHome,
 }: CareerEditProps) {
   const headingId = useId();
-  const initialApplicant = initialStep > 1 ? applicants[0] : undefined;
+  const initialApplicant = initialStep > 2 ? applicants[0] : undefined;
   const initialBirthDate = getBirthDateParts(initialApplicant?.birthDate);
   const [currentStep, setCurrentStep] =
     useState<CareerEditStep>(initialStep);
+  const [noticeAccepted, setNoticeAccepted] = useState(initialStep > 0);
   const [reason, setReason] = useState<CareerEditReason>("visit");
   const [reasonDetail, setReasonDetail] = useState("");
   const [applicantName, setApplicantName] = useState(
@@ -945,9 +947,9 @@ function CareerEdit({
   const [birthYear, setBirthYear] = useState(initialBirthDate.year);
   const [birthMonth, setBirthMonth] = useState(initialBirthDate.month);
   const [birthDay, setBirthDay] = useState(initialBirthDate.day);
-  const [hasSearchResult, setHasSearchResult] = useState(initialStep > 1);
+  const [hasSearchResult, setHasSearchResult] = useState(initialStep > 2);
   const [selectedApplicantId, setSelectedApplicantId] = useState(
-    initialStep > 1 ? (applicants[0]?.id ?? "") : "",
+    initialStep > 2 ? (applicants[0]?.id ?? "") : "",
   );
   const [editTarget, setEditTarget] =
     useState<CareerEditTarget>(initialEditTarget);
@@ -1002,12 +1004,13 @@ function CareerEdit({
     isValidEditableDate(draftRecord.startDate) &&
     isValidEditableDate(draftRecord.endDate);
   const canContinue =
-    (currentStep === 0 &&
+    (currentStep === 0 && noticeAccepted) ||
+    (currentStep === 1 &&
       (reason !== "other" || reasonDetail.trim().length > 0)) ||
-    (currentStep === 1 && Boolean(selectedApplicantId)) ||
-    (currentStep === 2 &&
-      (editTarget === "personal" || Boolean(selectedCareerId))) ||
+    (currentStep === 2 && Boolean(selectedApplicantId)) ||
     (currentStep === 3 &&
+      (editTarget === "personal" || Boolean(selectedCareerId))) ||
+    (currentStep === 4 &&
       (editTarget === "personal"
         ? canSavePersonalInfo
         : canSaveCareerInfo));
@@ -1127,7 +1130,12 @@ function CareerEdit({
       return;
     }
 
-    setCurrentStep(2);
+    if (currentStep === 3) {
+      setCurrentStep(2);
+      return;
+    }
+
+    setCurrentStep(3);
   };
 
   const handleNext = () => {
@@ -1147,6 +1155,11 @@ function CareerEdit({
 
     if (currentStep === 2) {
       setCurrentStep(3);
+      return;
+    }
+
+    if (currentStep === 3) {
+      setCurrentStep(4);
       return;
     }
 
@@ -1175,6 +1188,7 @@ function CareerEdit({
     const firstRecord = careerRecords[0];
 
     setCurrentStep(0);
+    setNoticeAccepted(false);
     setReason("visit");
     setReasonDetail("");
     setApplicantName("");
@@ -1218,13 +1232,20 @@ function CareerEdit({
           <Stage>
             <StageHeader>
               <StageEyebrow>
-                <CurrentStepText>{currentStep + 1}단계</CurrentStepText> / 4단계
+                <CurrentStepText>{currentStep + 1}단계</CurrentStepText>
+                {` / ${CAREER_EDIT_STEPS.length}단계`}
               </StageEyebrow>
               <StageTitle>{CAREER_EDIT_STAGE_TITLES[currentStep]}</StageTitle>
             </StageHeader>
 
             <StageContent>
               {currentStep === 0 && (
+                <CareerEditNoticeStep
+                  accepted={noticeAccepted}
+                  onAcceptedChange={setNoticeAccepted}
+                />
+              )}
+              {currentStep === 1 && (
                 <ReasonStep
                   reason={reason}
                   reasonDetail={reasonDetail}
@@ -1232,7 +1253,7 @@ function CareerEdit({
                   onReasonDetailChange={setReasonDetail}
                 />
               )}
-              {currentStep === 1 && (
+              {currentStep === 2 && (
                 <ApplicantStep
                   applicantName={applicantName}
                   birthYear={birthYear}
@@ -1250,7 +1271,7 @@ function CareerEdit({
                   onSelectApplicant={handleSelectApplicant}
                 />
               )}
-              {currentStep === 2 && (
+              {currentStep === 3 && (
                 <EditTargetSelectionStep
                   editTarget={editTarget}
                   careerRecords={careerRecords}
@@ -1259,14 +1280,14 @@ function CareerEdit({
                   onSelectCareer={handleSelectCareer}
                 />
               )}
-              {currentStep === 3 && editTarget === "personal" && (
+              {currentStep === 4 && editTarget === "personal" && (
                 <PersonalDetailsStep
                   personalInfo={personalInfo}
                   onChange={handlePersonalInfoChange}
                   onAddressSearch={handleAddressSearch}
                 />
               )}
-              {currentStep === 3 && editTarget === "career" && (
+              {currentStep === 4 && editTarget === "career" && (
                 <EditDetailsStep
                   record={draftRecord}
                   onChange={handleDraftChange}
@@ -1290,7 +1311,7 @@ function CareerEdit({
                 disabled={!canContinue}
                 onClick={handleNext}
               >
-                {currentStep === 3 ? "저장하기" : "다음으로"}
+                {currentStep === 4 ? "저장하기" : "다음으로"}
               </Button>
             </ActionRow>
           </Stage>

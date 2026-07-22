@@ -11,10 +11,15 @@ export const CareerEditRoot = styled.section`
     --krds-light-color-surface-secondary-subtler,
     #eef2f7
   );
+  --career-edit-surface-primary: var(
+    --krds-light-color-surface-primary-subtler,
+    #ecf2fe
+  );
   --career-color-text: var(--career-edit-text);
   --career-color-text-subtle: var(--career-edit-text-subtle);
   --career-color-border: var(--career-edit-border);
   --career-color-surface: var(--career-edit-surface);
+  --career-color-surface-primary: var(--career-edit-surface-primary);
 
   width: 100%;
   min-height: calc(100vh - 105px);
@@ -114,7 +119,7 @@ export const StepIndicatorFrame = styled.div`
   }
 
   .krds-step-wrap > li {
-    min-width: 120px;
+    min-width: 96px;
   }
 
   .krds-step-wrap .step,
