@@ -1,4 +1,9 @@
-import { createBrowserRouter } from "react-router";
+import { hasAuthToken } from "@commonly/utils";
+import {
+  createBrowserRouter,
+  redirect,
+  type LoaderFunctionArgs,
+} from "react-router";
 import UserLayout from "../layout/UserLayout";
 import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
 import CareerEditPage from "../pages/CareerEditPage";
@@ -8,13 +13,35 @@ import IntegratedRegistrationCompletePage from "../pages/IntegratedRegistrationC
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
 import IntegratedRegistrationPreviewPage from "../pages/IntegratedRegistrationPreviewPage";
 import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUploadPage";
+import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RegistrationMethodPage from "../pages/RegistrationMethodPage";
 import RoutePlaceholderPage from "../pages/RoutePlaceholderPage";
 
+function requireAuth({ request }: LoaderFunctionArgs) {
+  if (hasAuthToken()) {
+    return null;
+  }
+
+  const requestUrl = new URL(request.url);
+  const redirectTo = `${requestUrl.pathname}${requestUrl.search}${requestUrl.hash}`;
+
+  return redirect(`/login?redirectTo=${encodeURIComponent(redirectTo)}`);
+}
+
+function redirectAuthenticatedUser() {
+  return hasAuthToken() ? redirect("/") : null;
+}
+
 export const router = createBrowserRouter([
   {
+    path: "/login",
+    loader: redirectAuthenticatedUser,
+    Component: LoginPage,
+  },
+  {
     path: "/",
+    loader: requireAuth,
     Component: UserLayout,
     children: [
       {
