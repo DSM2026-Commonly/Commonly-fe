@@ -1,14 +1,21 @@
 import styled from "@emotion/styled";
 import { Button, TextList } from "krds-react";
 
-export const LoginContent = styled.section`
+interface LoginVariantProps {
+  $variant: "default" | "civil";
+}
+
+export const LoginContent = styled.section<LoginVariantProps>`
   display: flex;
-  width: min(
-    clamp(320px, 52vw, 720px),
-    calc(100% - clamp(32px, 5vw, 80px))
-  );
+  width: ${({ $variant }) =>
+    $variant === "civil"
+      ? "min(792px, calc(100% - clamp(32px, 5vw, 80px)))"
+      : "min(clamp(320px, 52vw, 720px), calc(100% - clamp(32px, 5vw, 80px)))"};
   margin: 0 auto;
-  padding: clamp(36px, 4.2vw, 64px) 0 clamp(48px, 5vw, 80px);
+  padding: ${({ $variant }) =>
+    $variant === "civil"
+      ? "clamp(36px, 4.2vw, 64px) 0"
+      : "clamp(36px, 4.2vw, 64px) 0 clamp(48px, 5vw, 80px)"};
   box-sizing: border-box;
   flex-direction: column;
   color: var(--krds-light-color-text-basic, #1e2124);
@@ -16,40 +23,70 @@ export const LoginContent = styled.section`
     "Pretendard GOV", Pretendard, "Noto Sans KR", "Malgun Gothic", sans-serif;
 `;
 
-export const LoginHeadingArea = styled.header`
-  padding-bottom: clamp(20px, 2vw, 28px);
-  border-bottom: 1px solid
-    var(--krds-light-color-divider-gray, #8a949e);
+export const LoginHeadingArea = styled.header<LoginVariantProps>`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ $variant }) => ($variant === "civil" ? "16px" : "0")};
+  padding-bottom: ${({ $variant }) =>
+    $variant === "civil" ? "0" : "clamp(20px, 2vw, 28px)"};
+  border-bottom: ${({ $variant }) =>
+    $variant === "civil"
+      ? "0"
+      : "1px solid var(--krds-light-color-divider-gray, #8a949e)"};
 `;
 
-export const LoginEyebrow = styled.p`
-  margin: 0 0 8px;
+export const LoginEyebrow = styled.p<LoginVariantProps>`
+  margin: ${({ $variant }) => ($variant === "civil" ? "0" : "0 0 8px")};
   color: var(--krds-light-color-text-subtle, #464c53);
   font-size: 15px;
-  font-weight: 400;
+  font-weight: ${({ $variant }) => ($variant === "civil" ? "700" : "400")};
   line-height: 1.5;
 `;
 
-export const LoginHeading = styled.h1`
+export const LoginHeading = styled.h1<LoginVariantProps>`
   margin: 0;
   color: var(--krds-light-color-text-bolder, #131416);
-  font-size: clamp(30px, 2.3vw, 36px);
+  font-size: ${({ $variant }) =>
+    $variant === "civil"
+      ? "clamp(30px, 2.6vw, 40px)"
+      : "clamp(30px, 2.3vw, 36px)"};
   font-weight: 700;
   line-height: 1.5;
-  letter-spacing: 0;
+  letter-spacing: ${({ $variant }) => ($variant === "civil" ? "1px" : "0")};
 `;
 
-export const LoginForm = styled.form`
+export const LoginPanel = styled.div`
+  width: 100%;
+  margin-top: 48px;
+  padding: 31px 32px 32px;
+  box-sizing: border-box;
+  border-top: 1px solid
+    var(--krds-light-color-divider-gray, #8a949e);
+  border-bottom: 1px solid
+    var(--krds-light-color-divider-gray, #8a949e);
+
+  @media (max-width: 767px) {
+    margin-top: 32px;
+    padding: 24px 0;
+  }
+`;
+
+export const LoginForm = styled.form<LoginVariantProps>`
   display: flex;
-  width: min(100%, clamp(300px, 32vw, 460px));
-  margin: clamp(20px, 2vw, 28px) auto 0;
+  width: ${({ $variant }) =>
+    $variant === "civil"
+      ? "min(100%, 480px)"
+      : "min(100%, clamp(300px, 32vw, 460px))"};
+  margin: ${({ $variant }) =>
+    $variant === "civil" ? "0 auto" : "clamp(20px, 2vw, 28px) auto 0"};
   flex-direction: column;
 `;
 
-export const FieldGroup = styled.div`
+export const FieldGroup = styled.div<LoginVariantProps>`
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.2vw, 16px);
+  gap: ${({ $variant }) =>
+    $variant === "civil" ? "24px" : "clamp(12px, 1.2vw, 16px)"};
 
   .form-group,
   .form-conts {
@@ -58,15 +95,18 @@ export const FieldGroup = styled.div`
 
   .krds-input {
     width: 100%;
-    height: clamp(46px, 3.6vw, 52px);
-    min-height: clamp(46px, 3.6vw, 52px);
-    padding: 0 14px;
+    height: ${({ $variant }) =>
+      $variant === "civil" ? "56px" : "clamp(46px, 3.6vw, 52px)"};
+    min-height: ${({ $variant }) =>
+      $variant === "civil" ? "56px" : "clamp(46px, 3.6vw, 52px)"};
+    padding: ${({ $variant }) =>
+      $variant === "civil" ? "0 16px" : "0 14px"};
     box-sizing: border-box;
     border: 1px solid var(--krds-light-color-border-gray-dark, #58616a);
     border-radius: 8px;
     color: var(--krds-light-color-text-basic, #1e2124);
     background: var(--krds-light-color-surface-white, #ffffff);
-    font-size: 16px;
+    font-size: ${({ $variant }) => ($variant === "civil" ? "19px" : "16px")};
     line-height: 1.5;
   }
 
@@ -80,6 +120,20 @@ export const FieldGroup = styled.div`
     outline: 2px solid var(--krds-light-color-border-primary, #256ef4);
     outline-offset: 2px;
   }
+`;
+
+export const LoginField = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const LoginFieldLabel = styled.label`
+  color: var(--krds-light-color-text-subtle, #464c53);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
 `;
 
 export const RememberRow = styled.div`
@@ -100,13 +154,16 @@ export const FormError = styled.p`
   line-height: 1.5;
 `;
 
-export const LoginSubmitButton = styled(Button)`
+export const LoginSubmitButton = styled(Button)<LoginVariantProps>`
   &.krds-btn {
     width: 100%;
     min-width: 0;
-    height: clamp(46px, 3.6vw, 52px);
-    min-height: clamp(46px, 3.6vw, 52px);
-    margin-top: clamp(16px, 1.6vw, 22px);
+    height: ${({ $variant }) =>
+      $variant === "civil" ? "56px" : "clamp(46px, 3.6vw, 52px)"};
+    min-height: ${({ $variant }) =>
+      $variant === "civil" ? "56px" : "clamp(46px, 3.6vw, 52px)"};
+    margin-top: ${({ $variant }) =>
+      $variant === "civil" ? "24px" : "clamp(16px, 1.6vw, 22px)"};
     padding: 0 20px;
     border-radius: 8px;
     font-size: 17px;
@@ -115,13 +172,14 @@ export const LoginSubmitButton = styled(Button)`
   }
 `;
 
-export const AccountHelpLinks = styled.nav`
+export const AccountHelpLinks = styled.nav<LoginVariantProps>`
   display: flex;
   min-height: 24px;
-  margin-top: clamp(14px, 1.4vw, 20px);
+  margin-top: ${({ $variant }) =>
+    $variant === "civil" ? "24px" : "clamp(14px, 1.4vw, 20px)"};
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: ${({ $variant }) => ($variant === "civil" ? "8px" : "16px")};
 `;
 
 export const AccountHelpLink = styled.a`
@@ -159,13 +217,18 @@ export const SectionDivider = styled.div`
   background: transparent;
 `;
 
-export const HelpCard = styled.aside`
+export const HelpCard = styled.aside<LoginVariantProps>`
   width: 100%;
-  padding: clamp(18px, 2vw, 24px) clamp(20px, 2.4vw, 28px);
+  min-height: ${({ $variant }) => ($variant === "civil" ? "164px" : "auto")};
+  margin-top: ${({ $variant }) => ($variant === "civil" ? "40px" : "0")};
+  padding: ${({ $variant }) =>
+    $variant === "civil"
+      ? "16px 24px"
+      : "clamp(18px, 2vw, 24px) clamp(20px, 2.4vw, 28px)"};
   box-sizing: border-box;
   border: 1px solid
     var(--krds-light-color-border-secondary-light, #d6e0eb);
-  border-radius: 8px;
+  border-radius: ${({ $variant }) => ($variant === "civil" ? "12px" : "8px")};
   scroll-margin-top: 24px;
   background: var(--krds-light-color-surface-secondary-subtler, #eef2f7);
 
@@ -197,10 +260,11 @@ export const HelpIcon = styled.span`
   line-height: 1;
 `;
 
-export const HelpList = styled(TextList)`
+export const HelpList = styled(TextList)<LoginVariantProps>`
   margin: 12px 0 0;
-  --krds-info-list--gap-layout-depth1-li-li: 6px;
+  --krds-info-list--gap-layout-depth1-li-li: ${({ $variant }) =>
+    $variant === "civil" ? "8px" : "6px"};
   color: var(--krds-light-color-text-subtle, #464c53);
-  font-size: 15px;
+  font-size: ${({ $variant }) => ($variant === "civil" ? "17px" : "15px")};
   line-height: 1.5;
 `;

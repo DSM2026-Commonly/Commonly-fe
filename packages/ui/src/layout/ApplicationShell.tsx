@@ -15,6 +15,7 @@ export interface ApplicationShellProps {
   headerVariant: HeaderVariant;
   headerProps?: Omit<HeaderProps, "variant">;
   footerProps?: FooterProps;
+  fillViewport?: boolean;
 }
 
 function ApplicationShell({
@@ -22,10 +23,11 @@ function ApplicationShell({
   headerVariant,
   headerProps,
   footerProps,
+  fillViewport = true,
 }: ApplicationShellProps) {
   return (
     <ApplicationShellRoot>
-      <ApplicationViewport>
+      <ApplicationViewport $fillViewport={fillViewport}>
         <Header {...headerProps} variant={headerVariant} />
         <ApplicationMain id="main-content">{children}</ApplicationMain>
       </ApplicationViewport>

@@ -4,11 +4,15 @@ export const ApplicationShellRoot = styled.div`
   width: 100%;
 `;
 
-export const ApplicationViewport = styled.div`
+interface ApplicationViewportProps {
+  $fillViewport: boolean;
+}
+
+export const ApplicationViewport = styled.div<ApplicationViewportProps>`
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: ${({ $fillViewport }) => ($fillViewport ? "100vh" : "auto")};
+  min-height: ${({ $fillViewport }) => ($fillViewport ? "100svh" : "auto")};
   flex-direction: column;
 `;
 
