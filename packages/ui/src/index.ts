@@ -84,6 +84,8 @@ export type {
   UserManagementAction,
   UserManagementHomeProps,
 } from "./user-management/UserManagementHome";
+export { default as UserList } from "./user-management/UserList";
+export type { UserListProps } from "./user-management/UserList";
 export { default as UserRegistration } from "./user-management/UserRegistration";
 export type {
   UserRegistrationData,

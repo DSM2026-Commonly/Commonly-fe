@@ -15,6 +15,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import RoutePlaceholderPage from "../pages/RoutePlaceholderPage";
 import UserDeletionCompletePage from "../pages/UserDeletionCompletePage";
 import UserDeletionPage from "../pages/UserDeletionPage";
+import UserListPage from "../pages/UserListPage";
 import UserManagementPage from "../pages/UserManagementPage";
 import UserRegistrationCompletePage from "../pages/UserRegistrationCompletePage";
 import UserRegistrationPage from "../pages/UserRegistrationPage";
@@ -85,12 +86,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "accounts/list",
-        element: (
-          <RoutePlaceholderPage
-            title="사용자 조회"
-            description="사용자 목록 조회 화면은 추후 연결될 예정입니다."
-          />
-        ),
+        Component: UserListPage,
       },
       {
         path: "accounts/register",

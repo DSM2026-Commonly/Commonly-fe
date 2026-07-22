@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { Button } from "krds-react";
 
 export const WorkHistoryRoot = styled.section`
   display: flex;
   width: min(980px, calc(100% - 40px));
-  min-height: 971px;
+  min-height: 883px;
   margin: 0 auto;
   padding: 84px 0 64px;
   box-sizing: border-box;
@@ -186,73 +185,4 @@ export const PageMoveIcon = styled.span<{ $direction: "prev" | "next" }>`
   border-left: 1.5px solid currentColor;
   transform: rotate(${({ $direction }) =>
     $direction === "prev" ? "45deg" : "225deg"});
-`;
-
-export const PageJumpForm = styled.form`
-  display: flex;
-  width: 176px;
-  min-height: 40px;
-  margin: 0 auto;
-  align-items: center;
-  gap: 16px;
-`;
-
-export const PageJumpField = styled.div`
-  display: flex;
-  width: 96px;
-  height: 40px;
-  align-items: center;
-  flex: 0 0 96px;
-`;
-
-export const PageJumpInput = styled.input`
-  width: 56px;
-  height: 40px;
-  padding: 8px 10px;
-  box-sizing: border-box;
-  border: 1px solid var(--krds-light-color-input-border, #58616a);
-  border-radius: 6px;
-  color: var(--krds-light-color-text-basic, #1e2124);
-  background: var(--krds-light-color-input-surface, #fff);
-  font: inherit;
-  font-size: 17px;
-  line-height: 1.5;
-  text-align: center;
-
-  &:focus-visible {
-    outline: 2px solid var(--krds-light-color-border-primary, #256ef4);
-    outline-offset: 2px;
-  }
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    margin: 0;
-    appearance: none;
-  }
-`;
-
-export const PageCount = styled.span`
-  display: inline-flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  padding-left: 9px;
-  box-sizing: border-box;
-  color: var(--krds-light-color-text-subtle, #464c53);
-  font-size: 17px;
-  line-height: 1.5;
-  white-space: nowrap;
-`;
-
-export const PageJumpButton = styled(Button)`
-  &.krds-btn {
-    width: 64px;
-    min-width: 64px;
-    height: 40px;
-    min-height: 40px;
-    padding: 0 12px;
-    border-radius: 6px;
-    font-size: 17px;
-    line-height: 1.5;
-  }
 `;

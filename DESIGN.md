@@ -3,8 +3,8 @@
 ## Source of truth
 - Status: Active
 - Last refreshed: 2026-07-22
-- Primary product surfaces: 사용자용 경력증명서 발급, 경력사항 개별·통합 등록, 관리자용 업무 이력 조회, 공통 헤더·푸터
-- Evidence reviewed: Figma `Commonly` nodes `107:15370`, `107:13996`, `107:16348`; `apps/user-web/src/router/index.tsx`; `apps/admin-web/src/router/index.tsx`; `packages/ui/src/integrated-registration*`; `packages/ui/src/individual-registration*`; `packages/ui/src/header`; `packages/ui/src/layout`
+- Primary product surfaces: 사용자용 경력증명서 발급, 경력사항 개별·통합 등록, 관리자용 사용자 목록·업무 이력 조회, 공통 헤더·푸터
+- Evidence reviewed: Figma `Commonly` nodes `107:15370`, `107:13996`, `107:16269`, `107:16348`; `apps/user-web/src/router/index.tsx`; `apps/admin-web/src/router/index.tsx`; `packages/ui/src/registration`; `packages/ui/src/user-management`; `packages/ui/src/work-history`; `packages/ui/src/header`; `packages/ui/src/layout`
 
 ## Brand
 - Personality: 신뢰할 수 있고 명료한 공공 업무 서비스
@@ -12,19 +12,19 @@
 - Avoid: 장식 위주의 표현, 낮은 대비, 서비스별로 다른 입력 규칙
 
 ## Product goals
-- Goals: 관리자가 경력 대상자와 경력 정보를 오류 없이 단계별 등록하도록 돕는다.
+- Goals: 관리자가 업무 담당자 계정을 빠르게 조회하고 경력 대상자와 경력 정보를 오류 없이 단계별 관리하도록 돕는다.
 - Non-goals: 이 저장소에서 주소·중복 확인용 실제 행정 API를 정의하지 않는다.
-- Success signals: 단계 이동이 명확하고 필수 입력 및 확인 전 제출이 방지된다.
+- Success signals: 사용자 목록과 페이지 위치를 쉽게 파악할 수 있고, 등록 단계 이동이 명확하며 필수 입력 및 확인 전 제출이 방지된다.
 
 ## Personas and jobs
 - Primary personas: 유성구 경력관리 관리자, 등록 업무 담당자
-- User jobs: 대상자 확인, 경력 입력, 대량 파일 등록, 등록 결과 확인
+- User jobs: 업무 담당자 계정 조회, 대상자 확인, 경력 입력, 대량 파일 등록, 등록 결과 확인
 - Key contexts of use: 데스크톱 업무 환경 중심, 모바일에서는 핵심 폼 조작 가능
 
 ## Information architecture
 - Primary navigation: 경력증명서 발급, 경력사항 등록, 경력사항 수정, 사용자 관리, 업무 이력 조회
-- Core routes/screens: `/career/register`, `/career/register/individual/*`, `/career/register/bulk/*`, `/history`
-- Content hierarchy: 페이지 제목과 단계 표시 → 현재 단계 제목 → 입력/안내 카드 → 이전·다음 행동
+- Core routes/screens: `/career/register`, `/career/register/individual/*`, `/career/register/bulk/*`, `/accounts`, `/accounts/list`, `/history`
+- Content hierarchy: 페이지 제목 → 목록 또는 단계 제목 → 표·입력·안내 카드 → 페이지 이동 또는 이전·다음 행동
 
 ## Design principles
 - Principle 1: 저장소의 KRDS 컴포넌트와 토큰을 우선 사용한다.
@@ -41,8 +41,8 @@
 
 ## Components
 - Existing components to reuse: KRDS Button, TextInput, Select, Radio/RadioGroup, Checkbox, StepIndicator, FileUpload
-- New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계, `IndividualRegistrationComplete` 개별 등록 완료 결과, `WorkHistory` 업무 이력 표·페이지 이동
-- Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 페이지 선택·바로 이동, 반응형 단일 열/표 가로 스크롤
+- New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계, `IndividualRegistrationComplete` 개별 등록 완료 결과, `UserList` 사용자 표·페이지 이동, `WorkHistory` 업무 이력 표·페이지 이동
+- Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 사용자 목록 페이지 선택, 반응형 단일 열/표 가로 스크롤
 - Token/component ownership: 공통 UI는 `packages/ui`, 라우트 연결은 `apps/user-web`와 `apps/admin-web`
 
 ## Accessibility
