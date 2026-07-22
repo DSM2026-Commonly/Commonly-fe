@@ -8,6 +8,7 @@ import CivilLayout from "../layout/CivilLayout";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RoutePlaceholderPage from "../pages/RoutePlaceholderPage";
+import SignupPage from "../pages/SignupPage";
 
 function requireAuth({ request }: LoaderFunctionArgs) {
   if (hasAuthToken()) {
@@ -29,6 +30,11 @@ export const router = createBrowserRouter([
     path: "/login",
     loader: redirectAuthenticatedUser,
     Component: LoginPage,
+  },
+  {
+    path: "/signup",
+    loader: redirectAuthenticatedUser,
+    Component: SignupPage,
   },
   {
     path: "/",

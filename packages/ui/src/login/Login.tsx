@@ -37,6 +37,7 @@ export type LoginVariant = "default" | "civil";
 export interface LoginProps {
   initialLoginId?: string;
   onSubmit: (data: LoginFormData) => void | Promise<void>;
+  signupHref?: string;
   variant?: LoginVariant;
 }
 
@@ -45,7 +46,12 @@ interface LoginFieldErrors {
   password?: string;
 }
 
-function Login({ initialLoginId = "", onSubmit, variant = "default" }: LoginProps) {
+function Login({
+  initialLoginId = "",
+  onSubmit,
+  signupHref = "#login-help",
+  variant = "default",
+}: LoginProps) {
   const titleId = useId();
   const loginIdInputId = useId();
   const passwordInputId = useId();
@@ -187,7 +193,7 @@ function Login({ initialLoginId = "", onSubmit, variant = "default" }: LoginProp
         {isCivil && (
           <>
             <AccountHelpSeparator aria-hidden="true" />
-            <AccountHelpLink href="#login-help">회원가입</AccountHelpLink>
+            <AccountHelpLink href={signupHref}>회원가입</AccountHelpLink>
           </>
         )}
       </AccountHelpLinks>
