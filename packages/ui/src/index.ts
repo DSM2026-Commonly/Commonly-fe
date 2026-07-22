@@ -34,6 +34,8 @@ export type {
   IndividualRegistrationCareerProps,
   IndividualRegistrationCareerStep,
 } from "./individual-registration-career/IndividualRegistrationCareer";
+export { default as IndividualRegistrationComplete } from "./individual-registration-complete/IndividualRegistrationComplete";
+export type { IndividualRegistrationCompleteProps } from "./individual-registration-complete/IndividualRegistrationComplete";
 export { default as IntegratedRegistrationUpload } from "./integrated-registration-upload/IntegratedRegistrationUpload";
 export type {
   IntegratedRegistrationUploadProps,

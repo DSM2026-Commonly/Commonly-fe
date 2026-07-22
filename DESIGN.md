@@ -4,7 +4,7 @@
 - Status: Active
 - Last refreshed: 2026-07-22
 - Primary product surfaces: 사용자용 경력증명서 발급, 경력사항 개별·통합 등록, 공통 헤더·푸터
-- Evidence reviewed: Figma `Commonly` node `107:15370`, `apps/user-web/src/router/index.tsx`, `packages/ui/src/integrated-registration*`, `packages/ui/src/header`, `packages/ui/src/layout`
+- Evidence reviewed: Figma `Commonly` nodes `107:15370`, `107:13996`; `apps/user-web/src/router/index.tsx`; `packages/ui/src/integrated-registration*`; `packages/ui/src/individual-registration*`; `packages/ui/src/header`; `packages/ui/src/layout`
 
 ## Brand
 - Personality: 신뢰할 수 있고 명료한 공공 업무 서비스
@@ -41,7 +41,7 @@
 
 ## Components
 - Existing components to reuse: KRDS Button, TextInput, Select, Radio/RadioGroup, Checkbox, StepIndicator, FileUpload
-- New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계
+- New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계, `IndividualRegistrationComplete` 개별 등록 완료 결과
 - Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 반응형 단일 열
 - Token/component ownership: 공통 UI는 `packages/ui`, 라우트 연결은 `apps/user-web`
 
@@ -61,7 +61,7 @@
 - Loading: 향후 API 연결 시 버튼 내 진행 상태와 중복 실행 방지 필요
 - Empty: 입력 placeholder와 비활성 다음 버튼으로 안내
 - Error: 필드 인접 오류 메시지 사용
-- Success: 중복 확인 결과를 aria-live 텍스트로 함께 제공
+- Success: 중복 확인 결과를 aria-live 텍스트로 함께 제공하고, 개별 등록 완료 시 대상자와 담당 업무를 요약해 표시한다.
 - Disabled: 필수값·중복 확인 완료 전 다음 버튼 비활성
 - Offline/slow network, if applicable: 주소·중복 확인 API 연결 시 재시도 상태 필요
 

@@ -1,4 +1,7 @@
-import { IndividualRegistrationSubject } from "@commonly/ui";
+import {
+  IndividualRegistrationSubject,
+  type IndividualRegistrationSubjectData,
+} from "@commonly/ui";
 import { useNavigate } from "react-router";
 
 function IndividualRegistrationSubjectPage() {
@@ -7,7 +10,11 @@ function IndividualRegistrationSubjectPage() {
   return (
     <IndividualRegistrationSubject
       onPrevious={() => void navigate("/career/register/individual")}
-      onNext={() => void navigate("/career/register/individual/career")}
+      onNext={(subject: IndividualRegistrationSubjectData) =>
+        void navigate("/career/register/individual/career", {
+          state: { subject },
+        })
+      }
     />
   );
 }

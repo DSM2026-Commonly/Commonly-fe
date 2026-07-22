@@ -3,6 +3,7 @@ import UserLayout from "../layout/UserLayout";
 import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
 import HomePage from "../pages/HomePage";
 import IndividualRegistrationCareerPage from "../pages/IndividualRegistrationCareerPage";
+import IndividualRegistrationCompletePage from "../pages/IndividualRegistrationCompletePage";
 import IndividualRegistrationNoticePage from "../pages/IndividualRegistrationNoticePage";
 import IndividualRegistrationSubjectPage from "../pages/IndividualRegistrationSubjectPage";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "career/register/individual/career",
         Component: IndividualRegistrationCareerPage,
+      },
+      {
+        path: "career/register/individual/complete",
+        Component: IndividualRegistrationCompletePage,
       },
       {
         path: "career/register/bulk",
