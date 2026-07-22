@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AdminLayout from "../layout/AdminLayout";
+import HomePage from "../pages/HomePage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
 import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUploadPage";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -12,12 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <RoutePlaceholderPage
-            title="경력관리 관리자 시스템"
-            description="상단 메뉴에서 필요한 관리 업무를 선택해 주세요."
-          />
-        ),
+        Component: HomePage,
       },
       {
         path: "career/issue",
