@@ -1,6 +1,5 @@
-import styled from "@emotion/styled";
-import Footer, {
-  Header,
+import {
+  ApplicationShell,
   type FooterProps,
   type HeaderProps,
   useScrollToTopOnChange,
@@ -13,17 +12,6 @@ export interface UserLayoutProps {
   headerProps?: Omit<HeaderProps, "variant">;
   footerProps?: FooterProps;
 }
-
-const LayoutRoot = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-`;
-
-const MainContent = styled.main`
-  width: 100%;
-  flex: 1 0 auto;
-`;
 
 function UserLayout({
   children,
@@ -42,17 +30,13 @@ function UserLayout({
     headerProps?.onNavigate ?? ((href: string) => void navigate(href));
 
   return (
-    <LayoutRoot>
-      <Header
-        {...headerProps}
-        variant="user"
-        onNavigate={handleNavigate}
-      />
-      <MainContent id="main-content">
-        {children ?? <Outlet />}
-      </MainContent>
-      <Footer {...footerProps} />
-    </LayoutRoot>
+    <ApplicationShell
+      headerVariant="user"
+      headerProps={{ ...headerProps, onNavigate: handleNavigate }}
+      footerProps={footerProps}
+    >
+      {children ?? <Outlet />}
+    </ApplicationShell>
   );
 }
 

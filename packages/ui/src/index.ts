@@ -1,5 +1,7 @@
 export { default } from "./layout/footer";
 export type { FooterProps } from "./layout/footer";
+export { default as ApplicationShell } from "./layout/ApplicationShell";
+export type { ApplicationShellProps } from "./layout/ApplicationShell";
 export { default as Header } from "./header/Header";
 export type { HeaderProps, HeaderVariant } from "./header/Header";
 export { default as CareerCertificateIssue } from "./career-certificate/CareerCertificateIssue";
@@ -9,6 +11,17 @@ export type {
   CareerCertificateIssueView,
   CertificateIssueType,
 } from "./career-certificate/CareerCertificateIssue";
+export { default as CareerEdit } from "./career-edit/CareerEdit";
+export type {
+  CareerEditApplicant,
+  CareerEditGender,
+  CareerEditPersonalInfo,
+  CareerEditProps,
+  CareerEditReason,
+  CareerEditRecord,
+  CareerEditSubmission,
+  CareerEditTarget,
+} from "./career-edit/CareerEdit";
 export { default as UserHome } from "./home/UserHome";
 export type { UserHomeProps } from "./home/UserHome";
 export { default as RegistrationMethodSelector } from "./registration-method/RegistrationMethodSelector";

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import UserLayout from "../layout/UserLayout";
 import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
+import CareerEditPage from "../pages/CareerEditPage";
 import HomePage from "../pages/HomePage";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
 import IntegratedRegistrationCompletePage from "../pages/IntegratedRegistrationCompletePage";
@@ -59,12 +60,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/edit",
-        element: (
-          <RoutePlaceholderPage
-            title="경력사항 수정"
-            description="경력사항 수정 페이지를 준비 중입니다."
-          />
-        ),
+        Component: CareerEditPage,
       },
       {
         path: "*",

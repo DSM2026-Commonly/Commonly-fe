@@ -1,8 +1,8 @@
+import useCareerFlowScroll from "../career-flow/useCareerFlowScroll";
 import type { CareerCertificateIssueView } from "./CareerCertificateIssue.types";
-import useScrollToTopOnChange from "../hooks/useScrollToTopOnChange";
 
 function useCareerCertificateScroll(view: CareerCertificateIssueView) {
-  useScrollToTopOnChange(view);
+  useCareerFlowScroll(view);
 }
 
 export default useCareerCertificateScroll;
