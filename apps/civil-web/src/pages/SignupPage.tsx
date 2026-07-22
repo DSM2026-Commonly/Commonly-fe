@@ -1,7 +1,8 @@
 import { ApplicationShell } from "@commonly/ui";
 import styled from "@emotion/styled";
 import { Button } from "krds-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { requestTestSignupIdentity } from "./signupVerification";
 
 const SignupContent = styled.section`
   width: min(792px, calc(100% - 40px));
@@ -203,6 +204,18 @@ const HelpText = styled.p`
 `;
 
 function SignupPage() {
+  const navigate = useNavigate();
+
+  const handleVerification = () => {
+    const verifiedIdentity = requestTestSignupIdentity();
+
+    if (verifiedIdentity === null) {
+      return;
+    }
+
+    void navigate("/signup/form", { state: { verifiedIdentity } });
+  };
+
   return (
     <ApplicationShell headerVariant="not-auth" fillViewport={false}>
       <SignupContent aria-labelledby="signup-title">
@@ -213,7 +226,12 @@ function SignupPage() {
 
         <SignupBody>
           <VerificationPanel>
-            <VerificationButton variant="primary" size="large" type="button">
+            <VerificationButton
+              variant="primary"
+              size="large"
+              type="button"
+              onClick={handleVerification}
+            >
               본인인증
             </VerificationButton>
 
