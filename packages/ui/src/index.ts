@@ -79,4 +79,24 @@ export type {
   IntegratedRegistrationCompleteProps,
   IntegratedRegistrationCompleteResult,
 } from "./registration/integrated-registration-complete/IntegratedRegistrationComplete";
+export { default as UserManagementHome } from "./user-management/UserManagementHome";
+export type {
+  UserManagementAction,
+  UserManagementHomeProps,
+} from "./user-management/UserManagementHome";
+export { default as UserRegistration } from "./user-management/UserRegistration";
+export type {
+  UserRegistrationData,
+  UserRegistrationProps,
+} from "./user-management/UserRegistration";
+export { default as UserDeletion } from "./user-management/UserDeletion";
+export type {
+  UserAccountRecord,
+  UserDeletionProps,
+} from "./user-management/UserDeletion";
+export { default as UserManagementComplete } from "./user-management/UserManagementComplete";
+export type {
+  UserManagementCompleteProps,
+  UserManagementCompletionAction,
+} from "./user-management/UserManagementComplete";
 export { default as useScrollToTopOnChange } from "./hooks/useScrollToTopOnChange";

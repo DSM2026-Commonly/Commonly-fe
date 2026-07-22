@@ -13,6 +13,11 @@ import IntegratedRegistrationUploadPage from "../pages/IntegratedRegistrationUpl
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RoutePlaceholderPage from "../pages/RoutePlaceholderPage";
+import UserDeletionCompletePage from "../pages/UserDeletionCompletePage";
+import UserDeletionPage from "../pages/UserDeletionPage";
+import UserManagementPage from "../pages/UserManagementPage";
+import UserRegistrationCompletePage from "../pages/UserRegistrationCompletePage";
+import UserRegistrationPage from "../pages/UserRegistrationPage";
 import WorkHistoryPage from "../pages/WorkHistoryPage";
 
 function requireAuth({ request }: LoaderFunctionArgs) {
@@ -76,12 +81,32 @@ export const router = createBrowserRouter([
       },
       {
         path: "accounts",
+        Component: UserManagementPage,
+      },
+      {
+        path: "accounts/list",
         element: (
           <RoutePlaceholderPage
-            title="사용자 관리"
-            description="사용자 관리 페이지를 준비 중입니다."
+            title="사용자 조회"
+            description="사용자 목록 조회 화면은 추후 연결될 예정입니다."
           />
         ),
+      },
+      {
+        path: "accounts/register",
+        Component: UserRegistrationPage,
+      },
+      {
+        path: "accounts/register/complete",
+        Component: UserRegistrationCompletePage,
+      },
+      {
+        path: "accounts/delete",
+        Component: UserDeletionPage,
+      },
+      {
+        path: "accounts/delete/complete",
+        Component: UserDeletionCompletePage,
       },
       {
         path: "history",
