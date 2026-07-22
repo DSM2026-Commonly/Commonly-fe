@@ -21,6 +21,13 @@ export type {
   IntegratedRegistrationNoticeProps,
   IntegratedRegistrationNoticeStep,
 } from "./integrated-registration/IntegratedRegistrationNotice";
+export { default as IndividualRegistrationSubject } from "./individual-registration-subject/IndividualRegistrationSubject";
+export type {
+  IndividualRegistrationDuplicateCandidate,
+  IndividualRegistrationSubjectData,
+  IndividualRegistrationSubjectProps,
+  IndividualRegistrationSubjectStep,
+} from "./individual-registration-subject/IndividualRegistrationSubject";
 export { default as IntegratedRegistrationUpload } from "./integrated-registration-upload/IntegratedRegistrationUpload";
 export type {
   IntegratedRegistrationUploadProps,

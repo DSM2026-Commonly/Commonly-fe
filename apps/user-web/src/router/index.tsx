@@ -3,6 +3,7 @@ import UserLayout from "../layout/UserLayout";
 import CareerCertificateIssuePage from "../pages/CareerCertificateIssuePage";
 import HomePage from "../pages/HomePage";
 import IndividualRegistrationNoticePage from "../pages/IndividualRegistrationNoticePage";
+import IndividualRegistrationSubjectPage from "../pages/IndividualRegistrationSubjectPage";
 import IntegratedRegistrationConfirmPage from "../pages/IntegratedRegistrationConfirmPage";
 import IntegratedRegistrationCompletePage from "../pages/IntegratedRegistrationCompletePage";
 import IntegratedRegistrationNoticePage from "../pages/IntegratedRegistrationNoticePage";
@@ -35,10 +36,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "career/register/individual/subject",
+        Component: IndividualRegistrationSubjectPage,
+      },
+      {
+        path: "career/register/individual/career",
         element: (
           <RoutePlaceholderPage
-            title="대상자 입력"
-            description="개별 등록 대상자의 정보를 입력하는 페이지를 준비 중입니다."
+            title="경력사항 입력"
+            description="개별 등록 대상자의 경력사항을 입력하는 페이지를 준비 중입니다."
           />
         ),
       },
