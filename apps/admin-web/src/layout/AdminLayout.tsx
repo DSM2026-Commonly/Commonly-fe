@@ -24,8 +24,13 @@ function AdminLayout({
   const isCareerRegistrationPath =
     pathname === "/career/register" ||
     pathname.startsWith("/career/register/");
+  const isUserManagementPath =
+    pathname === "/accounts" || pathname.startsWith("/accounts/");
 
-  useScrollToTopOnChange(pathname, isCareerRegistrationPath);
+  useScrollToTopOnChange(
+    pathname,
+    isCareerRegistrationPath || isUserManagementPath,
+  );
 
   const handleNavigate =
     headerProps?.onNavigate ?? ((href: string) => void navigate(href));
