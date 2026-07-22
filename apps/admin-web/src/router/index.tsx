@@ -18,6 +18,7 @@ import UserDeletionPage from "../pages/UserDeletionPage";
 import UserManagementPage from "../pages/UserManagementPage";
 import UserRegistrationCompletePage from "../pages/UserRegistrationCompletePage";
 import UserRegistrationPage from "../pages/UserRegistrationPage";
+import WorkHistoryPage from "../pages/WorkHistoryPage";
 
 function requireAuth({ request }: LoaderFunctionArgs) {
   if (hasAuthToken()) {
@@ -109,12 +110,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "history",
-        element: (
-          <RoutePlaceholderPage
-            title="업무 이력 조회"
-            description="업무 이력 조회 페이지를 준비 중입니다."
-          />
-        ),
+        Component: WorkHistoryPage,
       },
       {
         path: "*",
