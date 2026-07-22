@@ -1,10 +1,10 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 const SCROLL_SPEED_PX_PER_MS = 2.5;
 
 function useScrollToTopOnChange(trigger: string, enabled = true) {
-  useLayoutEffect(() => {
-    if (!enabled) {
+  useEffect(() => {
+    if (!enabled || typeof window === "undefined") {
       return;
     }
 
