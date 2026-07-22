@@ -42,7 +42,7 @@
 ## Components
 - Existing components to reuse: KRDS Button, TextInput, Select, Radio/RadioGroup, Checkbox, StepIndicator, FileUpload
 - New/changed components: `IndividualRegistrationSubject` 대상자 입력 단계, `IndividualRegistrationComplete` 개별 등록 완료 결과, `UserList` 사용자 표·페이지 이동, `WorkHistory` 업무 이력 표·페이지 이동
-- Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 사용자 목록 페이지 선택·바로 이동, 반응형 단일 열/표 가로 스크롤
+- Variants and states: 기본, 비활성, 유효성 미충족, 중복 확인 완료, 사용자 목록 페이지 선택, 반응형 단일 열/표 가로 스크롤
 - Token/component ownership: 공통 UI는 `packages/ui`, 라우트 연결은 `apps/user-web`와 `apps/admin-web`
 
 ## Accessibility

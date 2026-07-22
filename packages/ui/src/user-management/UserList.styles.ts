@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Button } from "krds-react";
 
 const mobileBreakpoint = "767px";
 
@@ -34,7 +33,7 @@ export const UserListContent = styled.div`
 
 export const UserListCard = styled.section`
   display: flex;
-  min-height: 807px;
+  min-height: 743px;
   padding: 39px;
   box-sizing: border-box;
   border: 1px solid var(--krds-light-color-border-gray-light, #b1b8be);
@@ -99,34 +98,5 @@ export const UserListTableFrame = styled.div`
     text-align: left;
     vertical-align: middle;
     white-space: nowrap;
-  }
-`;
-
-export const UserListActionRow = styled.div`
-  display: flex;
-  min-height: 64px;
-  justify-content: flex-end;
-
-  @media (max-width: ${mobileBreakpoint}) {
-    align-items: stretch;
-  }
-`;
-
-export const HomeButton = styled(Button)`
-  &.krds-btn {
-    width: 169px;
-    min-width: 169px;
-    height: 64px;
-    min-height: 64px;
-    padding: 0 24px;
-    border-radius: 8px;
-    font-size: 19px;
-    line-height: 1.5;
-  }
-
-  @media (max-width: ${mobileBreakpoint}) {
-    &.krds-btn {
-      width: 100%;
-    }
   }
 `;

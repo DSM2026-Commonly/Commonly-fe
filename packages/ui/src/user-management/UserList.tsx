@@ -1,14 +1,9 @@
 import "krds-react/dist/index.css";
 
 import { Table } from "krds-react";
-import { type FormEvent, useId, useState } from "react";
+import { useId, useState } from "react";
 import {
-  PageCount,
   PageEllipsis,
-  PageJumpButton,
-  PageJumpField,
-  PageJumpForm,
-  PageJumpInput,
   PageMoveButton,
   PageMoveIcon,
   PageNumberButton,
@@ -18,8 +13,6 @@ import {
 } from "../work-history/WorkHistory.styles";
 import type { UserAccountRecord } from "./UserDeletion";
 import {
-  HomeButton,
-  UserListActionRow,
   UserListCard,
   UserListContent,
   UserListRoot,
@@ -32,7 +25,6 @@ export interface UserListProps {
   totalPages?: number;
   initialPage?: number;
   onPageChange?: (page: number) => void;
-  onHome?: () => void;
 }
 
 const DEFAULT_ACCOUNTS: readonly UserAccountRecord[] = Array.from(
@@ -87,7 +79,6 @@ function UserList({
   totalPages = 22,
   initialPage = 1,
   onPageChange,
-  onHome,
 }: UserListProps) {
   const titleId = useId();
   const cardTitleId = useId();
@@ -97,28 +88,13 @@ function UserList({
     Math.min(normalizedTotalPages, Math.floor(initialPage)),
   );
   const [currentPage, setCurrentPage] = useState(normalizedInitialPage);
-  const [pageInput, setPageInput] = useState(String(normalizedInitialPage));
   const visiblePages = getVisiblePages(currentPage, normalizedTotalPages);
 
   const changePage = (page: number) => {
     const nextPage = Math.max(1, Math.min(normalizedTotalPages, page));
 
     setCurrentPage(nextPage);
-    setPageInput(String(nextPage));
     onPageChange?.(nextPage);
-  };
-
-  const handlePageJump = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const requestedPage = Number(pageInput);
-
-    if (!Number.isInteger(requestedPage)) {
-      setPageInput(String(currentPage));
-      return;
-    }
-
-    changePage(requestedPage);
   };
 
   return (
@@ -202,36 +178,7 @@ function UserList({
               </PageMoveButton>
             </PaginationNav>
           </PaginationFrame>
-
-          <PageJumpForm aria-label="페이지 바로 이동" onSubmit={handlePageJump}>
-            <PageJumpField>
-              <PageJumpInput
-                aria-label="이동할 페이지"
-                inputMode="numeric"
-                min={1}
-                max={normalizedTotalPages}
-                type="number"
-                value={pageInput}
-                onChange={(event) => setPageInput(event.target.value)}
-              />
-              <PageCount aria-hidden="true">/{normalizedTotalPages}</PageCount>
-            </PageJumpField>
-            <PageJumpButton size="small" type="submit" variant="secondary">
-              이동
-            </PageJumpButton>
-          </PageJumpForm>
         </UserListCard>
-
-        <UserListActionRow>
-          <HomeButton
-            size="xlarge"
-            type="button"
-            variant="primary"
-            onClick={onHome}
-          >
-            홈으로 돌아가기
-          </HomeButton>
-        </UserListActionRow>
       </UserListContent>
     </UserListRoot>
   );

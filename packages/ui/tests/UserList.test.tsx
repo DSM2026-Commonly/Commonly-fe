@@ -10,8 +10,9 @@ describe("UserList", () => {
     expect(markup.match(/전재준/g)).toHaveLength(10);
     expect(markup).toContain("글로리1234");
     expect(markup).toContain("대전광역시 유성구 가정북로 76");
-    expect(markup).toContain("/22");
-    expect(markup).toContain("홈으로 돌아가기");
+    expect(markup).not.toContain("페이지 바로 이동");
+    expect(markup).not.toContain("이동할 페이지");
+    expect(markup).not.toContain("홈으로 돌아가기");
   });
 
   test("renders supplied accounts and clamps pagination bounds", () => {
@@ -32,6 +33,6 @@ describe("UserList", () => {
 
     expect(markup).toContain("홍길동");
     expect(markup).toContain("hong1234");
-    expect(markup).toContain("/1");
+    expect(markup).toContain('aria-current="page"');
   });
 });

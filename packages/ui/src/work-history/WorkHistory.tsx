@@ -1,13 +1,8 @@
 import "krds-react/dist/index.css";
 
 import { Table } from "krds-react";
-import { type FormEvent, useId, useState } from "react";
+import { useId, useState } from "react";
 import {
-  PageCount,
-  PageJumpButton,
-  PageJumpField,
-  PageJumpForm,
-  PageJumpInput,
   PageTitle,
   PageEllipsis,
   PageMoveButton,
@@ -97,28 +92,13 @@ function WorkHistory({
 }: WorkHistoryProps) {
   const titleId = useId();
   const [currentPage, setCurrentPage] = useState(initialPage);
-  const [pageInput, setPageInput] = useState(String(initialPage));
   const visiblePages = getVisiblePages(currentPage, totalPages);
 
   const changePage = (page: number) => {
     const nextPage = Math.max(1, Math.min(totalPages, page));
 
     setCurrentPage(nextPage);
-    setPageInput(String(nextPage));
     onPageChange?.(nextPage);
-  };
-
-  const handlePageJump = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const requestedPage = Number(pageInput);
-
-    if (!Number.isInteger(requestedPage)) {
-      setPageInput(String(currentPage));
-      return;
-    }
-
-    changePage(requestedPage);
   };
 
   return (
@@ -204,24 +184,6 @@ function WorkHistory({
           </PageMoveButton>
         </PaginationNav>
       </PaginationFrame>
-
-      <PageJumpForm aria-label="페이지 바로 이동" onSubmit={handlePageJump}>
-        <PageJumpField>
-          <PageJumpInput
-            aria-label="이동할 페이지"
-            inputMode="numeric"
-            min={1}
-            max={totalPages}
-            type="number"
-            value={pageInput}
-            onChange={(event) => setPageInput(event.target.value)}
-          />
-          <PageCount aria-hidden="true">/{totalPages}</PageCount>
-        </PageJumpField>
-        <PageJumpButton size="small" type="submit" variant="secondary">
-          이동
-        </PageJumpButton>
-      </PageJumpForm>
     </WorkHistoryRoot>
   );
 }
