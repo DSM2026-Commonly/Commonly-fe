@@ -1,5 +1,5 @@
 import { IndividualRegistrationComplete } from "@commonly/ui";
-import { useLocation, useNavigate } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 
 interface IndividualRegistrationCompleteState {
   subjectName?: string;
@@ -10,6 +10,10 @@ function IndividualRegistrationCompletePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const state = location.state as IndividualRegistrationCompleteState | null;
+
+  if (!state) {
+    return <Navigate to="/career/register/individual" replace />;
+  }
 
   return (
     <IndividualRegistrationComplete
