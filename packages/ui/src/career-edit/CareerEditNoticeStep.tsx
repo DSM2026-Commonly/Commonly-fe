@@ -32,7 +32,9 @@ function CareerEditNoticeStep({
           시작하기 전에
         </IntroHeading>
         <IntroDescription>
-          {"정확한 인사기록 관리를 위해 경력사항 수정 내역은 모두 시스템에 기록됩니다.\n수정 대상자와 변경할 정보를 확인한 뒤 사실에 근거하여 정확하게 수정해 주시기 바랍니다."}
+          {
+            "정확한 인사기록 관리를 위해 경력사항 수정 내역은 모두 시스템에 기록됩니다.\n수정 대상자와 변경할 정보를 확인한 뒤 사실에 근거하여 정확하게 수정해 주시기 바랍니다."
+          }
         </IntroDescription>
       </IntroCard>
 
@@ -43,15 +45,10 @@ function CareerEditNoticeStep({
         <NoticeListFrame>
           <TextList type="decimal">
             <li>수정 대상자의 인적사항이 일치하는지 확인해 주세요.</li>
+            <li>변경 전 경력사항과 수정 근거 자료를 먼저 확인해 주세요.</li>
+            <li>수정 사유와 변경 내용을 정확하게 입력해 주세요.</li>
             <li>
-              변경 전 경력사항과 수정 근거 자료를 먼저 확인해 주세요.
-            </li>
-            <li>
-              수정 사유와 변경 내용을 구체적이고 정확하게 입력해 주세요.
-            </li>
-            <li>
-              저장하기 전에 수정할 항목과 입력 내용을 다시 한번 확인해
-              주세요.
+              저장하기 전에 수정할 항목과 입력 내용을 다시 한번 확인해 주세요.
             </li>
           </TextList>
         </NoticeListFrame>
